@@ -1,0 +1,222 @@
+:root {
+    --main-text: #f0f0f0;
+    --nav-text: #f0f0f0;
+    --nav-color: rgba(2,20,26,.97);
+    --main-blue: #45567d;
+    --main-background: #303841;
+    --main-red: #be3144;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 100%;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 100%;
+    font-weight: 400;
+    line-height: 1.4;
+    background-color: var(--main-background);
+    color: var(--main-text)
+  }
+  /* TITLES */
+  h1,
+  h2 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 780;
+    text-align: center;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+
+/* navbar styles */
+.nav-list{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    gap: 1.875rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.nav{
+    width: 100%;
+    background: var(--nav-color);
+    overflow: auto;
+    position: fixed;
+    top:0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+}
+
+.nav-list a{
+    text-decoration: none;
+    color: var(--main-text);
+    display: block;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    color: var(--nav-text)
+}
+.nav-list a:hover{
+    text-decoration: none;
+    display: block;
+    background-color: var(--main-blue);
+}
+
+/* SECTIONS */
+section:not(.section-projects){
+    padding: 17.5rem 10rem 0px 10rem;
+    text-align: justify;
+    
+}
+.section-presentation, .section-contact{
+    font-size: 1.5rem;
+}
+.section-presentation{
+    height: 100vh;
+}
+.section-presentation a{
+    color: var(--main-text);
+}
+.section-about{
+    text-align: justify;
+    font-size: 1.5rem;
+    height: 100vh;
+
+}
+.section-projects{
+    padding: 5rem 0 1rem 0;
+}
+.section-contact{
+    margin-bottom: 10rem;
+    
+}
+
+/* PROJECT-GRID */
+.grid {
+    display: grid;
+    grid-template-columns:  repeat(3, minmax(auto, 1fr));
+    grid-template-rows:  repeat(2, 20rem);
+    gap: 2.5rem;
+    margin: 0 2%;
+    justify-content: center;
+}
+
+.item{
+    background: rgb(255, 255, 255);
+}
+
+/* FOOTER */
+footer{
+    position: relative;
+    bottom: 0;
+    background-color: var(--main-red);
+}
+/* QUERIES */
+/* 1200 */
+
+@media only screen and (max-width: 75em) {
+    /* Desktops, large screens: */
+    html{
+        font-size: 60%;
+    }
+    
+    .nav-list a{
+        padding: 1.5rem 2rem;
+        font-size: 1.5rem;
+    }
+    
+   
+}
+/* 992 */
+@media only screen and (max-width: 62em) { 
+    /* Small screens, laptops: */
+    html{
+        font-size: 58%;
+    }
+    .section-projects{
+        padding: 14rem 0 1.875rem 0;
+    }
+}
+/* 768 */
+@media only screen and (max-width: 48em) {
+    /* iPads, Tablets: */
+    html{
+        font-size: 58%;
+    }
+    .grid{
+        grid-template-columns: repeat(auto-fill, 90%);
+        grid-template-rows:  repeat(6, 18.75rem);
+        row-gap: 1.25rem;
+      }
+      section:not(.section-projects){
+        padding: 30rem 2rem 0px 2rem;
+        font-size: 1.6rem;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px){
+    .grid{
+        grid-template-columns: repeat(2, 45%);
+        grid-template-rows:  repeat(3, 18.75rem);
+        row-gap: 1.25rem;
+      }
+}
+/* 600 */
+@media only screen and (max-width: 37.5rem){
+    .grid{
+        grid-template-columns: repeat(auto-fill, 98%);
+        grid-template-rows:  repeat(6, 18.75rem);
+        row-gap: 1.25rem;
+      }
+  
+}
+
+/* 520 */
+@media only screen and (max-width: 32.5rem) {
+    /* For mobile phones: */
+    html{
+        font-size: 55%;
+    }
+    
+    
+}
+@media only screen and (min-width: 480px) and (max-width: 810px){
+    .grid{
+        grid-template-columns: repeat(2, 45%);
+        grid-template-rows:  repeat(3, 25rem);
+        row-gap: 1.25rem;
+      }
+}
+/* 480 */
+@media only screen and (max-width: 30em) {
+    /* For mobile phones: */
+    html{
+        font-size: 55%;
+    }
+    .grid{
+        grid-template-columns: repeat(auto-fill, 90%);
+        grid-template-rows:  repeat(6, 28rem);
+        row-gap: 1.25rem;
+      }
+    
+}
+@media only screen and (max-width: 20em) {
+    /* For mobile phones: */
+    html{
+        font-size: 52%;
+    }
+    
+    
+}
