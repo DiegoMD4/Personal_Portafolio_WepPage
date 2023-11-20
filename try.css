@@ -15,7 +15,7 @@ html{
     box-sizing: border-box;
     scroll-behavior: smooth;
     font-family: 'Open Sans', sans-serif;
-    font-size: 100%;
+    font-size: 100%; /*16px*/
 }
 body {
     font-family: 'Poppins', sans-serif;
@@ -76,7 +76,7 @@ body {
 
 /* SECTIONS */
 section:not(.section-projects, .section-contact){
-    padding: 17.5rem 10rem 0px 10rem;
+    padding: 15rem 10rem 0px 10rem;
     text-align: justify;
     
 }
@@ -86,8 +86,27 @@ section:not(.section-projects, .section-contact){
 .section-presentation{
     height: 100vh;
 }
+.section-presentation button{
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 6px;
+    margin: 1.5rem auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--main-red);
+}
+.section-presentation button:hover{
+    box-shadow: 0 0 10px var(--main-red);
+}
 .section-presentation a{
     color: var(--main-text);
+    text-decoration: none;
+}
+.section-presentation a:hover{
+    color: var(--main-text);
+    text-decoration: underline;
 }
 .section-about{
     text-align: justify;
