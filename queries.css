@@ -1,4 +1,13 @@
-
+/* COLORS */
+:root {
+    --main-text: #f0f0f0;
+    --nav-text: #f0f0f0;
+    --nav-color: rgba(2,20,26,.97);
+    --main-blue: #45567d;
+    --main-background: #303841;
+    --main-red: #be3144;
+  }
+  /*colors  */
 @media only screen and (max-width: 75em) {
     /* Desktops, large screens: */
     html{
