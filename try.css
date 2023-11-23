@@ -103,8 +103,8 @@ section:not(.section-projects, .section-contact){
     color: var(--main-red)
 }
 .section-presentation a{
-    width: 7em;
-    height: 8vh;
+    width: 7.5rem;
+    height: 3.5rem;
     font-size: 1.25rem;
     border: none;
     border-radius: 10px;
@@ -199,29 +199,12 @@ footer a{
 
  
   
-@media only screen and (max-width: 75em) {
-  /* Desktops, large screens: */
- 
-  .nav-list a{
-      padding: 1.5rem 2rem;
-      font-size: 1.5rem;
-  }
-  
- 
-}
-/* 992 */
-@media only screen and (max-width: 62em) { 
-  /* Small screens, laptops: */
- 
-  .section-projects{
-      padding: 14rem 0 1.875rem 0;
-  }
-}
+
 /* 768 */
 @media only screen and (max-width: 48em) {
   /* iPads, Tablets: */
   html{
-      font-size: 62.5%;
+      font-size: 90%;
   }
   .grid{
       grid-template-columns: repeat(auto-fill, 90%);
@@ -248,7 +231,7 @@ footer a{
     .responsive{
       display: block;
       float: right;
-      padding: .625rem;
+      padding: .625rem 1.25rem;
       font-size: 2rem;
       color: var(--main-red);
   }
@@ -270,7 +253,7 @@ footer a{
 @media only screen and (max-width: 30em) {
   /* For mobile phones: */
   html{
-      font-size: 62.5%;
+      font-size: 80%;
   }
   .grid{
       grid-template-columns: repeat(auto-fill, 90%);
