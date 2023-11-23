@@ -71,7 +71,7 @@ body {
     color: var(--nav-text);
     display: block;
     padding: 1rem 2rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: var(--nav-text);
     border-bottom: 5px solid transparent; /* Agrega un borde inferior transparente */
     transition: border-bottom 0.3s ease; /* Agrega una transición para un efecto suave */
@@ -95,19 +95,17 @@ section:not(.section-projects, .section-contact){
     flex-wrap: wrap;
     justify-content: center;
 }
-.section-presentation, .section-contact{
-    font-size: 1.2rem;
-}
 
 .section-presentation p, .section-contact p{
+    font-size: 1.25rem;
     font-style: italic;
     text-align: center;
     color: var(--main-red)
 }
 .section-presentation a{
-    width: 7rem;
+    width: 7em;
     height: 8vh;
-    font-size: 1rem;
+    font-size: 1.25rem;
     border: none;
     border-radius: 10px;
     margin: 1.5rem auto;
@@ -132,7 +130,7 @@ section:not(.section-projects, .section-contact){
 
 .section-about{
     text-align: justify;
-    font-size: 1rem;
+    font-size: 1.25rem;
     height: 100vh;
 
 }
@@ -195,7 +193,97 @@ footer a{
    color: white;
 }
 
-
+.responsive{
+  display: none;
+}
 
  
   
+@media only screen and (max-width: 75em) {
+  /* Desktops, large screens: */
+ 
+  .nav-list a{
+      padding: 1.5rem 2rem;
+      font-size: 1.5rem;
+  }
+  
+ 
+}
+/* 992 */
+@media only screen and (max-width: 62em) { 
+  /* Small screens, laptops: */
+ 
+  .section-projects{
+      padding: 14rem 0 1.875rem 0;
+  }
+}
+/* 768 */
+@media only screen and (max-width: 48em) {
+  /* iPads, Tablets: */
+  html{
+      font-size: 62.5%;
+  }
+  .grid{
+      grid-template-columns: repeat(auto-fill, 90%);
+      grid-template-rows:  repeat(6, 18.75rem);
+      row-gap: 1.25rem;
+    }
+    
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px){
+  .grid{
+      grid-template-columns: repeat(2, 45%);
+      grid-template-rows:  repeat(3, 18.75rem);
+      row-gap: 1.25rem;
+    }
+}
+/* 600 */
+@media only screen and (max-width: 37.5rem){
+  .grid{
+      grid-template-columns: repeat(auto-fill, 98%);
+      grid-template-rows:  repeat(6, 18.75rem);
+      row-gap: 1.25rem;
+    }
+    .responsive{
+      display: block;
+      float: right;
+      padding: .625rem;
+      font-size: 2rem;
+      color: var(--main-red);
+  }
+  .nav-list{
+      display: none;
+  }
+
+}
+
+
+@media only screen and (min-width: 480px) and (max-width: 810px){
+  .grid{
+      grid-template-columns: repeat(2, 45%);
+      grid-template-rows:  repeat(3, 25rem);
+      row-gap: 1.25rem;
+    }
+}
+/* 480 */
+@media only screen and (max-width: 30em) {
+  /* For mobile phones: */
+  html{
+      font-size: 62.5%;
+  }
+  .grid{
+      grid-template-columns: repeat(auto-fill, 90%);
+      grid-template-rows:  repeat(6, 28rem);
+      row-gap: 1.25rem;
+    }
+
+   
+  
+}
+@media only screen and (max-width: 20em) {
+  /* For mobile phones: */
+ 
+  
+}
+

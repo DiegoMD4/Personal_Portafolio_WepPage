@@ -8,102 +8,15 @@
     --main-red: #be3144;
   }
   /*colors  */
-@media only screen and (max-width: 75em) {
-    /* Desktops, large screens: */
-    html{
-        font-size: 60%;
-    }
-    
-    .nav-list a{
-        padding: 1.5rem 2rem;
-        font-size: 1.5rem;
-    }
-    
-   
-}
-/* 992 */
-@media only screen and (max-width: 62em) { 
-    /* Small screens, laptops: */
-    html{
-        font-size: 58%;
-    }
-    .section-projects{
-        padding: 14rem 0 1.875rem 0;
-    }
-}
-/* 768 */
-@media only screen and (max-width: 48em) {
-    /* iPads, Tablets: */
-    html{
-        font-size: 58%;
-    }
-    .grid{
-        grid-template-columns: repeat(auto-fill, 90%);
-        grid-template-rows:  repeat(6, 18.75rem);
-        row-gap: 1.25rem;
-      }
-      section:not(.section-projects, .section-contact){
-        padding: 30rem 2rem 0px 2rem;
-        font-size: 1.6rem;
-    }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 768px){
-    .grid{
-        grid-template-columns: repeat(2, 45%);
-        grid-template-rows:  repeat(3, 18.75rem);
-        row-gap: 1.25rem;
-      }
-}
-/* 600 */
-@media only screen and (max-width: 37.5rem){
-    .grid{
-        grid-template-columns: repeat(auto-fill, 98%);
-        grid-template-rows:  repeat(6, 18.75rem);
-        row-gap: 1.25rem;
-      }
-  
-}
-
 /* 520 */
 @media only screen and (max-width: 32.5rem) {
     /* For mobile phones: */
     html{
-        font-size: 55%;
+        font-size: 58%;
     }
     
     
-}
-@media only screen and (min-width: 480px) and (max-width: 810px){
-    .grid{
-        grid-template-columns: repeat(2, 45%);
-        grid-template-rows:  repeat(3, 25rem);
-        row-gap: 1.25rem;
-      }
-}
-/* 480 */
-@media only screen and (max-width: 30em) {
-    /* For mobile phones: */
-    html{
-        font-size: 55%;
-    }
-    .grid{
-        grid-template-columns: repeat(auto-fill, 90%);
-        grid-template-rows:  repeat(6, 28rem);
-        row-gap: 1.25rem;
-      }
-    
-}
-@media only screen and (max-width: 20em) {
-    /* For mobile phones: */
-    html{
-        font-size: 52%;
-    }
-    
-    
-}
-
-
+  }
 
 
 
