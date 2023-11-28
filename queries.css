@@ -6,6 +6,7 @@
     --main-blue: #45567d;
     --main-background: #303841;
     --main-red: #be3144;
+    --title:#404040;
   }
   /*colors  */
 /* 520 */
@@ -14,7 +15,9 @@
     html{
         font-size: 58%;
     }
-    
+    h1{
+      line-height: 1.4;
+    }
     
   }
 

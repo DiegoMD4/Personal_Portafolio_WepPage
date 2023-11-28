@@ -1,13 +1,13 @@
 :root {
     --main-text: #be3144;
     --nav-text: #be3144;
-    --nav-color: rgba(255,255,255,.90);
+    --nav-color: rgba(255,255,255);
     /* --main-blue: #45567d; */
     --main-background: white;
     --main-red: #be3144; 
     /* --p-color: #303841; */
     --button-text: white;
-    --tittle-color: #404040;
+    --tittle-color: #303841;
   }
 
 *{
@@ -60,8 +60,8 @@ body {
     overflow: auto;
     position: fixed;
     top:0;
-    /* border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px; */
+    /* border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;  */
     box-shadow: 0 0 10px ;
 }
 
@@ -116,8 +116,7 @@ section:not(.section-projects, .section-contact){
     background-color: var(--main-red);
 }
 .section-presentation a:hover{
-    box-shadow: 0 0 10px var(--main-red);
-    text-decoration: underline;
+    box-shadow: 0 0 20px var(--main-red);
 }
 .section-presentation a{
     color: var(--button-text);
@@ -130,7 +129,7 @@ section:not(.section-projects, .section-contact){
 
 .section-about{
     text-align: justify;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     height: 100vh;
 
 }
@@ -163,6 +162,7 @@ section:not(.section-projects, .section-contact){
     text-align: center;
 }
 .contact-links{
+    font-size: 1.8rem;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -178,8 +178,9 @@ section:not(.section-projects, .section-contact){
 }
 
 .item{
-    background: rgb(172, 158, 158);
+    background: rgb(255, 255, 255);
     overflow: hidden;
+    border: 1px solid black
 }
 .item img{
     width: 100%;
@@ -194,12 +195,22 @@ footer{
     position: relative;
     bottom: 0;
     background-color: var(--main-text);
-    color: var(--main-background)
+    color: var(--main-background);
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
 }
 footer a{
    text-decoration: none;
    color: white;
 }
+footer i{
+    font-size: 2rem;
+    padding-left: 0.5rem;
+  }
 
 .responsive{
   display: none;
@@ -245,6 +256,36 @@ footer a{
       display: none;
   }
 
+  footer{
+    font-size: 1.10rem;
+  }
+  footer i{
+    font-size: 2rem;
+    padding-left: 0.5rem;
+  }
+  .contact-links{
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section-contact a{
+    color: var(--main-text);
+    text-decoration: none;
+    transition: transform 0.3s ease-out;
+}
+.section-contact a:hover{
+    color: var(--main-tex);
+    text-decoration: underline;
+    transform: translateX(8px);
+}
+.section-presentation p, .section-contact p{
+    font-size: 1.15rem;
+    font-style: italic;
+    text-align: justify;
+    
+}
+
 }
 
 
@@ -267,12 +308,15 @@ footer a{
       row-gap: 1.25rem;
     }
 
-   
-  
-}
-@media only screen and (max-width: 20em) {
-  /* For mobile phones: */
- 
-  
+    
 }
 
+/* 320 */
+@media only screen and (max-width: 20rem) {
+    /* For mobile phones: */
+   
+    h1{
+      line-height: 1.15;
+    }
+    
+  }
