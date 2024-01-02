@@ -89,7 +89,7 @@ body {
 
 
 /* SECTIONS */
-section:not(.section-projects, .section-contact){
+section:not(.section-projects, .section-contact, .section-about){
     line-height: 1.2;
     padding: 0rem 10vw 0px 10vw;
     text-align: justify;
@@ -131,16 +131,28 @@ section:not(.section-projects, .section-contact){
 
 
 
-
+/* SECTION ABOUT */
 .section-about{
-    text-align: justify;
-    font-size: 1.1rem;
+    padding: 5rem 10vw 1rem 10vw;
     height: 100vh;
+}
+.section-about h2{
+    padding: 5vh 0 5vh 0;
+}
+.skill_chart{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+    justify-content: space-evenly;
+    
+}
 
+.skill_chart i {
+    font-size: 6.25rem;
 }
-.section-projects{
-    padding: 5rem 0 1rem 0;
-}
+
+
 
 
 .section-contact{
@@ -174,7 +186,13 @@ section:not(.section-projects, .section-contact){
     flex-direction: row;
     justify-content: space-evenly;
 }
-/* PROJECT-GRID */
+
+
+/* PROJECT-GRID *//* SECTION PROJECTS */
+.section-projects{
+    padding: 5rem 0 1rem 0;
+}
+
 .grid {
     display: grid;
     grid-template-columns:  repeat(3, minmax(auto, 1fr));
@@ -310,6 +328,11 @@ figcaption{
     text-align: justify;
     line-height: 1.2em;
 }
+
+.skill_chart i {
+    font-size: 5.25rem;
+}
+
 
 }
 
