@@ -1,0 +1,8 @@
+.section-projects{
+   padding: 2.5rem 0;
+}
+
+.section-projects h2{
+    font-size: 3rem;
+    color: var(--main-title);
+}

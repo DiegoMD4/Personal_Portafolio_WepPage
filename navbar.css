@@ -1,0 +1,38 @@
+/* NAVBAR STYLES */
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  /* Navbar */
+  .nav-list{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    margin-top: 8px;
+    padding: 8px 15px;
+    backdrop-filter: blur(12px);
+    /* -webkit-backdrop-filter: blur(10px); */
+  }
+  .nav a{
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--letter-color);
+    /* font-weight: bold; */
+  
+  }
+  .nav a:hover{
+    color: var(--hover-color)
+  }
+
+  .nav a.active{
+    color: var(--hover-color)
+  }

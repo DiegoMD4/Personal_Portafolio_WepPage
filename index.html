@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="queries.css"> -->
+    <!-- CSS -->
     <link rel="stylesheet" href="try.css">
-
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="presentation.css">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="contact.css">
+    <!-- CSS -->
     <!-- ANIMATE.CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
@@ -20,7 +23,9 @@
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       crossorigin="anonymous"
     />
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
           
@@ -29,36 +34,40 @@
 
 <body>
     
-        <nav class="nav">
-            <ul class="nav-list">
-                <li>
-                    <a href="#presentation">About me</a>
-                </li>
-                <li>
-                    <a href="#projects">My projects</a>
-                </li>
-                <li>
-                    <a href="#contact">Contact me</a>
-                </li>
-            </ul>
-            <div class="responsive">
-                <i class="fa-solid fa-bars "></i>
-            </div>
-        </nav>
+        <header>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="#presentation">About me</a>
+                    </li>
+                    <li>
+                        <a href="#projects">Projects</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+                
+            </nav>
+        </header>
 
       <!-- SECTION PRESENTATION -->
-      <main class="">
-        <section id="presentation" class="section-presentation animated fadeInDown">
+      <!-- class="animated fadeInDown" -->
+      <main >
+        <section id="presentation" class="section-presentation ">
+            <div class="head-presentation">
+                <img src="https://unavatar.io/link_zak" alt="Diego Montoya">
+                <a href="">Available for work</a>
+            </div>
             <h1 class="primary-title">Hi, I'm Diego</h1>
             <p>
-                I am a graduate computer engineer and a Full Stack developer with a burning passion for technology.
+                I'm a <strong>Computer Engineer and a Full Stack Developer</strong> from 🇭🇳 with a burning passion for technology.
             </p>
-            <a href="#about">See more</a>
+            <a class="networks" href=""><svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M8 11l0 5"></path><path d="M8 8l0 .01"></path><path d="M12 16l0 -5"></path><path d="M16 16v-3a2 2 0 0 0 -4 0"></path></svg>LinkedIn</a>
         </section>
-        <hr>
+      
 
-
-        <!-- SECTION ABOUT -->
+        <!-- SECTION ABOUT
         <section id="about" class="section-about">
 
             <h2 class="secondary-title">My Skills</h2>
@@ -92,34 +101,21 @@
                 
             </div>
         </section>
-        <hr>
+        <hr> -->
         <section id="projects" class="section-projects">
             <h2 class="secondary-title">My Projects</h2>
-            <div class="grid">
-
-                <div class="item">
-                    <a href="https://css-styles-project2.netlify.app/" target="_blank">
-                        <img src="assets/project-1.png" alt="project-1">
-                    </a>
-                    <figcaption>HTML/CSS Examples</figcaption>
+            <article>
+                <!-- <div class="project-image"><img src="/assets/svgl_1.webp" loading="lazy" alt="Project title"></div> -->
+                <div class="project-description">
+                    <h3>Project title number one</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea perspiciatis autem dicta veniam? Nisi, quo obcaecati esse velit quos expedita earum tempore quaerat doloribus dolore id molestiae hic sed ratione.</p>
                 </div>
-                <div class="item">
-                    <a href="https://incandescent-cheesecake-453643.netlify.app/" target="_blank">
-                        <img src="assets/project-2.png" alt="project-2">
-                    </a>
-                    <figcaption>Informative page</figcaption>
-                </div>
-                <div class="item"><figcaption>Proyecto</figcaption></div>
-                <div class="item"><figcaption>Proyecto</figcaption></div>
-                <div class="item"><figcaption>Proyecto</figcaption></div>
-                <div class="item"><figcaption>Proyecto</figcaption></div>
-            </div>
-            
+            </article>            
         </section>
-        <hr>
+
         <section id="contact" class="section-contact">
+            <h2 class="secondary-title">Let's work together</h2>
             
-                <h1 class="secondary-title">Let's work together</h1>
 
                 <p>If you're looking for a dedicated developer who is problem-solving oriented and always striving for excellence, I'm here to assist you!</p>
                 

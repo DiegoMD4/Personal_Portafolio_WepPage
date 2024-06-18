@@ -1,26 +1,71 @@
-/* COLORS */
 :root {
-    --main-text: #f0f0f0;
-    --nav-text: #f0f0f0;
-    --nav-color: rgba(2,20,26,.97);
-    --main-blue: #45567d;
-    --main-background: #303841;
-    --main-red: #be3144;
-    --title:#404040;
-  }
-  /*colors  */
-/* 520 */
-@media only screen and (max-width: 32.5rem) {
-    /* For mobile phones: */
-    html{
-        font-size: 58%;
-    }
-    h1{
-      line-height: 1.4;
-    }
-    
-  }
+  --main-text: #be3144;
+  --nav-text: #be3144;
+  --nav-color: rgba(255,255,255);
+  /* --main-blue: #45567d; */
+  --main-background: white;
+  --main-red: #be3144; 
+  /* --p-color: #303841; */
+  --button-text: white;
+  --tittle-color: #404040;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
 
 
 
+html{
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  
+  font-size: 62.5%; /*16px*/
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 100%;
+  font-weight: 400;
+  max-width: 800px;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 10px;
+  word-wrap: break-word;
+  line-height: 1.4;
+  background-color: var(--main-background);
+  color: var(--main-text)
+}
+.nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+/* Navbar */
+.nav-list{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  background-color: #be314400;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+}
+.nav a{
+  text-decoration: none;
+  font-size: 1.5rem;
+}
 
+
+:root {
+  --main-text: #be3144;
+  --nav-text: #be3144;
+  --nav-color: rgba(255,255,255);
+  /* --main-blue: #45567d; */
+  --main-background: white;
+  --main-red: #be3144; 
+  /* --p-color: #303841; */
+  --button-text: white;
+  --tittle-color: #404040;
+}
