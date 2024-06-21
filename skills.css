@@ -1,0 +1,59 @@
+.section-skills{
+    padding-top: 10rem;
+}
+
+
+.section-skills h2{
+    font-size: 30px;
+    color: var(--main-title);
+    margin-bottom: 2.4rem;
+    display: flex;
+    flex-direction: row;
+    gap: 3.2rem;
+    align-items: center;
+}
+.section-skills h3{
+    font-size: 2rem;
+    color: var(--hover-color);
+    margin: 0 4rem;
+    
+}
+
+.section-skills ol{
+    list-style: none;
+    border-left: solid rgb(229, 231, 235)
+}
+
+.section-skills li {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+}
+
+.section-skills span{
+    font-size: 48px;
+    margin-left: -11px;
+    color: var(--hover-color);
+}
+
+.skill-chart{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3rem;
+    width: 100%;
+}
+.skill-chart >i {
+    font-size: 6rem;    
+}
+.soft-chart{
+   font-size: 1.6rem;
+   color: var(--main-title);
+   
+}
+
+.section-skills ol > li:nth-child(2){
+    margin-top: 4rem;
+    
+}
