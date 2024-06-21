@@ -1,11 +1,18 @@
 :root {
     --tw-text-opacity: 1;
     --hover-color: #be3144;
+
+    --background-image: radial-gradient(ellipse 80% 80% at 50% -20%, #d9d8ff80, #ffffffe6);
     --main-background: rgb(249, 250, 251);
-    --main-title: rgb(31 41 55 / var(--tw-text-opacity));
-    --p-text-color: rgb(31 41 55 );
-    --letter-color: rgb(75 85 99 / var(--tw-text-opacity));
+
+    --main-title: rgb(31 41 55 / var(--tw-text-opacity)); /**/
+    --p-text-color: rgb(31 41 55 ); /*rgb(31 41 55 )*/;
+    --letter-color: rgb(75 85 99 / var(--tw-text-opacity));/**/
     --sub-color: rgb(234 179 8 );
+
+    --dark-background-image: radial-gradient(ellipse 80% 80% at 50% -20%, #7877c64d, #fff0);
+    --dark-background-color: rgb(3 7 18 );
+    --dark-p-text-color: rgb(255 255 255);
 }
 
 * {
@@ -34,6 +41,16 @@ body {
     color: var(--main-text);
     background-image: radial-gradient(ellipse 80% 80% at 50% -20%, #d9d8ff80, #ffffffe6);
 
+}
+
+body.dark-mode {
+    background-color: var(--dark-background-color);
+    background-image: var(--dark-background-image);
+    color: var(--dark-p-text-color);
+    --p-text-color: rgb(255 255 255);
+    --letter-color: rgb(229, 231, 235);
+    --main-title: rgb(255 255 255 1);
+    --hover-color: var(--sub-color)
 }
 
 main {
