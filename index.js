@@ -1,4 +1,4 @@
-// Selecciona los enlaces de navegación y agrega eventos de clic
+
 const navLinks = document.querySelectorAll('.nav a');
 navLinks.forEach(link => {
     link.addEventListener('click', function(event) {
@@ -7,10 +7,10 @@ navLinks.forEach(link => {
     });
 });
 
-// Selecciona el botón de cambio de tema
+
+
 const themeChangebtn = document.getElementById('themebtn');
 
-// Función para alternar el tema y guardar la preferencia en localStorage
 const toggleTheme = () => {
     document.body.classList.toggle('dark-mode');
     if (document.body.classList.contains('dark-mode')) {
@@ -25,7 +25,7 @@ const toggleTheme = () => {
     }
 };
 
-// Evento de clic para cambiar el tema
+
 themeChangebtn.addEventListener('click', toggleTheme);
 
 // Verifica el tema guardado en localStorage al cargar la página
@@ -48,8 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const scrollY = window.scrollY;
 
         // Calcula la opacidad en función del scroll
-        let opacity = Math.min(scrollY / maxScroll, 1) * 0.3; // Ajusta la opacidad máxima a 0.3
+        let opacity = Math.min(scrollY / maxScroll, 1) * 0.5; // Ajusta la opacidad máxima a 0.5
         navList.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+        navList.style.boxShadow = `0 4px 6px -1px rgba(0, 0, 0, ${opacity})`
+        
     }
 
     // Añadir el evento de scroll a la ventana

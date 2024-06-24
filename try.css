@@ -13,6 +13,10 @@
     --dark-background-image: radial-gradient(ellipse 80% 80% at 50% -20%, #7877c64d, #fff0);
     --dark-background-color: rgb(3 7 18 );
     --dark-p-text-color: rgb(255 255 255);
+
+    /* Presentation available for work */
+    --available-background-color: #DCFCE7;
+    --available-color: rgb(22, 101, 52);
 }
 
 * {
@@ -50,7 +54,9 @@ body.dark-mode {
     --p-text-color: rgb(255 255 255);
     --letter-color: rgb(229, 231, 235);
     --main-title: rgb(255 255 255 1);
-    --hover-color: var(--sub-color)
+    --hover-color: var(--sub-color);
+    --available-background-color:  rgb(31 41 55 );
+    --available-color: rgb(255 255 255);
 }
 
 main {
