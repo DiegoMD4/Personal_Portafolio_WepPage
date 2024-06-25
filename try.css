@@ -32,13 +32,16 @@ html {
 }
 
 body {
-   
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+    
     font-family: Onest Variable, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
     font-weight: 400;
-    max-width: 900px;
-    min-height: 100vh;
+    /* max-width: 900px; */
+    /* min-height: 100vh; */
     margin: 0 auto;
-    padding: 0 10px;
+    /* padding: 0 10px; */
     word-wrap: break-word;
     line-height: 1.4;
     background-color: var(--main-background);
@@ -60,15 +63,18 @@ body.dark-mode {
 }
 
 main {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-self: center;
+    justify-self: center; */
     padding: 0 16px;
-    margin-bottom: 100rem;
+
 }
 
-
-
+section{
+    max-width: 89.6rem;
+    width:100%;
+    margin: 0 auto;
+}
 
 
 @media (max-width: 600px){
