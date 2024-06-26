@@ -33,13 +33,13 @@
 }
 
 .project-description > h3{
-    font-size: 2.4rem;
+    font-size: 24px;
     color: var(--main-title);
     
 }
 .project-description > p{
     margin-top: .8rem;
-    font-size: 1.6rem;
+    font-size: 16px;
     color: var(--main-title)
 }
 
@@ -56,7 +56,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.6rem;
+    font-size: 16px;
     gap: 8px;
     margin-top: 1.6rem;
 }

@@ -20,7 +20,7 @@
     margin-top: 8px;
     padding: 8px 15px;
     backdrop-filter: blur(10px);
-    font-size: 1.5rem;
+    font-size: 14px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     -webkit-backdrop-filter: blur(10px);
     

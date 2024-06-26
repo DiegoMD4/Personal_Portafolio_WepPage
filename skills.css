@@ -14,7 +14,7 @@
 }
 
 .section-skills h3{
-    font-size: 2rem;
+    font-size: 20px;
     color: var(--hover-color);
 }
 
@@ -36,6 +36,7 @@
     position: absolute;
     left: -38px;
     color: var(--hover-color);
+    
 }
 .inner-div{
     position: sticky;
@@ -58,14 +59,22 @@
 }
 
 .section-skills h4{
-    font-size: 1.4rem;
-    line-height: 1.75rem;
+    font-size: 14px;
+    line-height: 24px;
     font-weight: 600;
     color: var(--sub-letter-color)
 }
 
 .soft-content{
     grid-column: span 3;
-    font-size: 1.6rem;
+    font-size: 16px;
     color: var(--letter-color)
+}
+
+@media (max-width: 600px){
+    .skill-grid{
+        display: block;
+
+    }
+
 }

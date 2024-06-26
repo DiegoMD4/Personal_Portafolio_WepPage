@@ -22,7 +22,7 @@
     color: var(--available-color);
     border: 1px solid rgb(22, 101, 52);
     border-radius: 9999px;
-    font-size: 1.4rem;
+    font-size: 14px;
     
 }
 
@@ -33,7 +33,7 @@
 }
 
 .section-presentation > p {
-    font-size: 2rem;
+    font-size: 20px;
     color: var(--p-text-color);
     line-height: 3rem;
     max-width: 600px;
@@ -56,7 +56,7 @@ h1 {
     flex-wrap: wrap;
 }
 .networks{
-    font-size: 1.6rem;
+    font-size: 16px;
     color: var(--p-text-color);
     padding: .4rem 1.6rem;
     max-width: fit-content;
