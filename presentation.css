@@ -34,7 +34,7 @@
 
 .section-presentation > p {
     font-size: 20px;
-    color: var(--p-text-color);
+    color: var(--sub-p-text);
     line-height: 3rem;
     max-width: 600px;
     display: block;
@@ -42,7 +42,7 @@
 }
 
 .section-presentation strong {
-    color: var(--hover-color)
+    color: var(--sub-color-ligther)
 }
 
 h1 {

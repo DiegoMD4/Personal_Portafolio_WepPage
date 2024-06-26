@@ -67,7 +67,7 @@ body.dark-mode {
     --available-color: rgb(255 255 255);
     --sub-letter-color: rgba(255, 255, 255, 0.8);
 
-    --sub-color-ligther: rgb(254 249 195);
+    --sub-color-ligther: rgb(231, 222, 123);
     --sub-p-text: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
@@ -79,7 +79,21 @@ main {
 
 }
 .footer{
-    margin: 64px 0 40px 0
+
+    border-top: 1px solid var(--sub-color-ligther);
+    display: flex;
+    justify-content: center;
+}
+.footer a{
+    padding: 5rem 0;
+    text-decoration:none;
+    color: var(--letter-color);
+    display: flex;
+    align-items: center;
+    font-size: 20px ;
+}
+.footer a:hover{
+    text-decoration: underline;
 }
 
 section{

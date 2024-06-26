@@ -40,7 +40,7 @@
 .project-description > p{
     margin-top: .8rem;
     font-size: 16px;
-    color: var(--main-title)
+    color: var(--sub-p-text)
 }
 
 .projects-footer{
