@@ -1,3 +1,45 @@
 .section-contact{
-    padding-top: 14.4rem;
+   padding-top: 10rem;
+   padding-bottom: 10rem;
+}
+
+.section-contact h2{
+    font-size: 30px;
+    color: var(--main-title);
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+.section-contact h3{
+    font-size: 20px;
+    color: var(--main-title)
+}
+
+.section-contact p{
+    font-size: 16px;
+    padding-top: 25px;
+    color: var(--sub-p-text);
+    max-width: 600px;
+}
+
+.contact-links{
+    padding-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.contact-links a{
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--sub-color-ligther);
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.section-contact strong {
+    color: var(--sub-color-ligther)
 }
