@@ -50,7 +50,8 @@
 }
 
 .projects-footer a{
-    padding: 1.2rem .8rem;
+    text-decoration: none;
+    padding: .8rem 1.5rem;
     border: 1px solid var(--letter-color);
     border-radius: 12px;
     display: inline-flex;
@@ -59,6 +60,12 @@
     font-size: 16px;
     gap: 8px;
     margin-top: 1.6rem;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    background-color: rgb(31 41 55 );
+    border-color: rgb(75 85 99 );
+}
+.projects-footer a:hover{
+    border-color: rgb(31 41 55 );
 }
 
 @media only screen and (min-width: 250px) and (max-width: 768px){

@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const navList = document.querySelector('.nav-list');
+    const navList = document.querySelector('.nav');
     const maxScroll = 200; // Puedes ajustar este valor según tus necesidades
 
     function onScroll() {

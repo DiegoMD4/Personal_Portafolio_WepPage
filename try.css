@@ -70,7 +70,7 @@ body.dark-mode {
     --available-color: rgb(255 255 255);
     --sub-letter-color: rgba(255, 255, 255, 0.8);
 
-    --sub-color-ligther: rgb(231, 222, 123);
+    --sub-color-ligther: rgb(238, 227, 113);
     --sub-p-text: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
@@ -84,7 +84,7 @@ main {
 
 .footer {
 
-    border-top: 1px solid var(--sub-color-ligther);
+    border-top: 1px solid var(--sub-letter-color);
     display: flex;
     justify-content: center;
 }

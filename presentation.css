@@ -27,8 +27,9 @@
 }
 
 .head-presentation>a:hover {
-    animation: pulse;
-    animation-duration: .5s;
+    padding: .5rem 1.3rem;
+    font-size: 15px;
+    transition: font-size ease, padding aese;
 
 }
 
@@ -42,7 +43,7 @@
 }
 
 .section-presentation strong {
-    color: var(--sub-color-ligther)
+    color: var(--sub-color)
 }
 
 h1 {
