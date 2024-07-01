@@ -36,7 +36,7 @@
 .section-presentation > p {
     font-size: 20px;
     color: var(--sub-p-text);
-    line-height: 3rem;
+    line-height: 28px;
     max-width: 600px;
     display: block;
     margin-top: 2.4rem;

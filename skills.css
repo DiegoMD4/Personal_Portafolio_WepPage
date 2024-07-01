@@ -35,7 +35,7 @@
 .section-skills span{
     font-size: 48px;
     position: absolute;
-    left: -38px;
+    left: -38.5px;
     color: var(--hover-color);
     
 }
@@ -75,7 +75,6 @@
 @media (max-width: 600px){
     .skill-grid{
         display: block;
-
     }
 
 }

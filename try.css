@@ -47,12 +47,11 @@ body {
 
     font-family: Onest Variable, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
     font-weight: 400;
-    /* max-width: 900px; */
-    /* min-height: 100vh; */
+
     margin: 0 auto;
-    /* padding: 0 10px; */
+
     word-wrap: break-word;
-    line-height: 1.4;
+    line-height: inherit;
     background-color: var(--main-background);
     color: var(--main-text);
     background-image: radial-gradient(ellipse 80% 80% at 50% -20%, #d9d8ff80, #ffffffe6);
@@ -84,8 +83,6 @@ main {
 }
 
 .footer {
-
-    border-top: 1px solid var(--sub-letter-color);
     display: flex;
     justify-content: center;
 }
@@ -112,7 +109,7 @@ section {
 
 
 
-@media (max-width: 800px) {
+@media (max-width: 480px) {
     html {
         font-size: 50%;
     }
@@ -121,7 +118,7 @@ section {
 
 @media (max-width: 380px) {
     html {
-        font-size: 40%;
+        font-size: 45%;
     }
 
 }
