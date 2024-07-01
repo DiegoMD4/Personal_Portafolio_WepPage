@@ -71,3 +71,8 @@ h1 {
     margin-top: 3.2rem;
 }
 
+body:not(.dark-mode) .networks:hover {
+    background-color: var(--p-text-color);
+    color: var(--dark-p-text-color);
+}
+
