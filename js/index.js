@@ -27,10 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
+        themeChangebtn.classList.remove('fa-sun');
+        themeChangebtn.classList.add('fa-moon');
     } else {
         document.body.classList.remove('dark-mode');
+        themeChangebtn.classList.remove('fa-moon');
+        themeChangebtn.classList.add('fa-sun');
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const navList = document.querySelector('.nav');
