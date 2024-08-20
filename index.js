@@ -1,6 +1,6 @@
 import './js/toggleTheme.js'
 import './js/navbarActive.js'
-
+import './js/toggleLanguage.js'
 
 document.addEventListener('DOMContentLoaded', function () {
     const navList = document.querySelector('.nav');
@@ -51,3 +51,5 @@ window.onload = function(){
     window.addEventListener('scroll', updateActiveSection);
     window.addEventListener('resize', updateActiveSection);
 };
+
+
