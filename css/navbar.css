@@ -53,3 +53,16 @@ header {
 .nav i{
   margin: 0 4px;
 }
+
+
+header button{
+  border-style: none;
+  background-color: #ffffff00;
+}
+header button:hover{
+  cursor: pointer;
+}
+
+header button img{
+  width: 16px;
+}
