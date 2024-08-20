@@ -21,7 +21,6 @@ header {
   border-radius: 9999px;
   padding: 0 12px;
   backdrop-filter: blur(10px);
-  font-size: 14px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
 }
@@ -64,5 +63,16 @@ header button:hover{
 }
 
 header button img{
-  width: 16px;
+  width: 18px;
+
+}
+
+@media (max-width: 480px) {
+  .nav a{
+    font-size: 13px;
+  }
+  .nav{
+    gap: 0.5rem;
+  }
+
 }
