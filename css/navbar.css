@@ -15,7 +15,7 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
   font-size: 14px;
   background-color: rgba(255, 255, 255, 0);
   border-radius: 9999px;
@@ -45,13 +45,16 @@ header {
   color: var(--hover-color)
 }
 
-.nav .fa-regular:hover {
+.nav .ti:hover {
   cursor: pointer;
 }
 
-.nav i{
-  margin: 0 4px;
+.nav .ti{
+  margin-right: 4px;
+  font-size: 20px;
+  font-weight: 500;
 }
+
 
 
 header button{
@@ -67,7 +70,7 @@ header button img{
 
 }
 
-@media (max-width: 480px) {
+@media (max-width: 430px) {
   .nav a{
     font-size: 13px;
   }
@@ -75,4 +78,46 @@ header button img{
     gap: 0.5rem;
   }
 
+}
+
+
+
+.theme-menu{
+  --tw-shadow: 0 3px 10px rgb(0, 0, 0, .2);
+  --tw-shadow-colored: 0 3px 10px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  list-style: none;
+  padding: 4px;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  animation: scale-up-center .15s cubic-bezier(.25,.46,.45,.94) both;
+  display: none;
+  border-radius: 6px;
+  background-color: var(--modal-background);
+}
+
+.theme-menu ul li{
+  color: var(--letter-color);
+  display: list-item;
+  padding: 6px 8px;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.theme-menu #languageChange-btn{
+  color: var(--letter-color);
+  display: flex;
+  flex-direction: row;
+  gap:  8px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Onest Variable, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+}
+
+
+.theme-menu ul li:hover{
+  background-color: var(--hover-li-background);
+  cursor: pointer;
 }

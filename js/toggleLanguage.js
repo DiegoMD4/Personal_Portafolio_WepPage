@@ -7,13 +7,16 @@ let currentLanguage = "en";
 
 const changeLanguage = () => {
   currentLanguage = currentLanguage === "en" ? "es" : "en";
-  flag.src = currentLanguage === "en" ? "/assets/english.png" : "/assets/spanish.png";
+  flag.src = currentLanguage === "en" ? "/assets/spanish.png" : "/assets/english.png";
   document.title = currentLanguage === "en" ? "Portfolio of Diego" : "Portafolio de Diego";
 
   document.querySelector("nav a[href='#presentation']").textContent = texts[currentLanguage].header.about;
   document.querySelector("nav a[href='#projects']").textContent = texts[currentLanguage].header.projects;
   document.querySelector("nav a[href='#skills']").textContent = texts[currentLanguage].header.skills;
   document.querySelector("nav a[href='#contact']").textContent = texts[currentLanguage].header.contact;
+  document.getElementById("light").textContent = texts[currentLanguage].header.themeLight;
+  document.getElementById("dark").textContent = texts[currentLanguage].header.themeDark;
+  document.getElementById("langText").innerText = texts[currentLanguage].header.language;
 
   document.querySelector(".primary-title").textContent = texts[currentLanguage].presentation.title;
   document.querySelector(".section-presentation p").innerHTML = texts[currentLanguage].presentation.description;
