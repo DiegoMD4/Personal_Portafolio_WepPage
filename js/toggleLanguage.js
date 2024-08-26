@@ -1,5 +1,5 @@
-import { githubSvg, resumeSvg, emailSvg } from "./variables/svg.js";
-import { texts } from "./variables/text.js";
+import { githubSvg, resumeSvg, emailSvg } from "./constants/svg.js";
+import { texts } from "./constants/text.js";
 
 const languageChangeBtn = document.getElementById("languageChange-btn");
 const flag = document.getElementById("flag");
