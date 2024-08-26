@@ -53,6 +53,7 @@ header {
   margin-right: 4px;
   font-size: 20px;
   font-weight: 500;
+  color: var(--letter-color);
 }
 
 
