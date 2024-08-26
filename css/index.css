@@ -24,6 +24,10 @@
     /* Contact */
     --sub-color-ligther: var(--hover-color);
     --sub-p-text: rgb(55 65 81 / var(--tw-text-opacity));
+
+
+    --modal-background: rgba(255, 255, 255, 0.9);
+    --hover-li-background: #a3a3a366;
 }
 
 * {
@@ -71,6 +75,9 @@ body.dark-mode {
 
     --sub-color-ligther: rgb(238, 227, 113);
     --sub-p-text: rgb(209 213 219 / var(--tw-text-opacity));
+
+    --modal-background:  rgba(17, 24, 39, 0.9);
+    --hover-li-background: #6b728080;
 }
 
 main {

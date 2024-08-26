@@ -4,7 +4,10 @@ export const texts = {
         about: "About me",
         projects: "Projects",
         skills: "Skills",
-        contact: "Contact"
+        contact: "Contact",
+        themeLight: "Light",
+        themeDark: "Dark",
+        language: "Español"
       },
       presentation: {
         title: "Hi, I'm Diego",
@@ -62,7 +65,10 @@ export const texts = {
         about: "Sobre mí",
         projects: "Proyectos",
         skills: "Habilidades",
-        contact: "Contacto"
+        contact: "Contacto",
+        themeLight: "Claro",
+        themeDark: "Oscuro",
+        language: "English"
       },
       presentation: {
         title: "Hola, soy Diego",
