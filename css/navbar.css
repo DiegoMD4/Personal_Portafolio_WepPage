@@ -81,24 +81,38 @@ header button img{
 
 }
 
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5); /* Comienza más pequeño */
+    opacity: 0.5; /* Semi-transparente */
+  }
+  100% {
+    transform: scale(1); /* Tamaño completo */
+    opacity: 1; /* Totalmente opaco */
+  }
+}
 
-
-.theme-menu{
+.theme-menu {
   --tw-shadow: 0 3px 10px rgb(0, 0, 0, .2);
   --tw-shadow-colored: 0 3px 10px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  list-style: none;
+  list-style: block;
   padding: 4px;
   position: absolute;
   right: 0;
   top: 40px;
-  animation: scale-up-center .15s cubic-bezier(.25,.46,.45,.94) both;
-  display: none;
   border-radius: 6px;
   background-color: var(--modal-background);
+  display: none; /* Oculto por defecto */
+  transform-origin: center center; /* Escala desde el centro */
 }
 
-.theme-menu ul li{
+.theme-menu.open {
+  display: block; /* Muestra el menú */
+  animation: scale-up-center .15s cubic-bezier(.25,.46,.45,.94) both;
+}
+
+.theme-menu ul li {
   color: var(--letter-color);
   display: list-item;
   padding: 6px 8px;
@@ -107,18 +121,22 @@ header button img{
   font-weight: 500;
 }
 
-.theme-menu #languageChange-btn{
+.theme-menu #languageChange-btn {
   color: var(--letter-color);
   display: flex;
   flex-direction: row;
-  gap:  8px;
+  gap: 8px;
   font-size: 14px;
   font-weight: 500;
   font-family: Onest Variable, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
 }
 
-
-.theme-menu ul li:hover{
+.theme-menu ul li:hover {
   background-color: var(--hover-li-background);
   cursor: pointer;
+}
+
+#flag {
+  width: 18px;
+  height: 18px;
 }
