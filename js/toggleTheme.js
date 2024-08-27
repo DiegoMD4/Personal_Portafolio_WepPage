@@ -1,17 +1,20 @@
 const themeChangebtn = document.getElementById('themebtn');
 const themeMenuModal = document.getElementById('modal-theme');
 
+
 document.getElementById('light').addEventListener('click', function () {
     document.body.classList.remove('dark-mode');
     localStorage.setItem('theme', 'light');
     themeChangebtn.classList.remove('ti-moon');
     themeChangebtn.classList.add('ti-sun');
+    themeMenuModal.classList.remove('open');
 });
 document.getElementById('dark').addEventListener('click', function () {
     localStorage.setItem('theme', 'dark');
     themeChangebtn.classList.remove('ti-sun');
     themeChangebtn.classList.add('ti-moon');
     document.body.classList.add('dark-mode');
+    themeMenuModal.classList.remove('open');
 });
 
 function showMenu(event) {
@@ -35,9 +38,8 @@ themeChangebtn.addEventListener('click', function () {
     }
 });
 
-document.addEventListener('click', function (event) {
-    if (themeMenuModal.style.display === 'block') {
-        themeMenuModal.style.display = 'none';
+document.addEventListener('click', function() {
+    if (!themeMenuModal.contains(event.target) && !themeChangebtn.contains(event.target)) {
         themeMenuModal.classList.remove('open');
     }
 });
