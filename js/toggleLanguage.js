@@ -8,7 +8,7 @@ let currentLanguage = "en";
 const changeLanguage = () => {
   currentLanguage = currentLanguage === "en" ? "es" : "en";
   flag.src = currentLanguage === "en" ? "/assets/spanish.png" : "/assets/english.png";
-  document.title = currentLanguage === "en" ? "Portfolio of Diego" : "Portafolio de Diego";
+  document.title = currentLanguage === "en" ? "Diego's Portfolio" : "Portafolio de Diego";
 
   document.querySelector("nav a[href='#presentation']").textContent = texts[currentLanguage].header.about;
   document.querySelector("nav a[href='#projects']").textContent = texts[currentLanguage].header.projects;
@@ -49,10 +49,12 @@ const changeLanguage = () => {
   document.querySelectorAll(".contact-links a")[1].innerHTML = `<i class="fab fa-linkedin"></i>${texts[currentLanguage].contact.linkedin}`;
   document.querySelectorAll(".contact-links a")[2].innerHTML = `${emailSvg}${texts[currentLanguage].contact.email}`;
 
-  document.querySelector(".footer a").innerHTML = `${resumeSvg}${texts[currentLanguage].footer.resume}`;
+  document.querySelector(".footer a").innerHTML = `${texts[currentLanguage].footer.resume}${resumeSvg}`;
 
   document.querySelector(".footer a").href = texts[currentLanguage].footer.href
   document.querySelector(".footer a").download = texts[currentLanguage].footer.download
+
+  document.getElementById('modal-theme').classList.remove('open');
 };
 
 languageChangeBtn.addEventListener("click", changeLanguage);
