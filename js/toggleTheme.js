@@ -1,4 +1,5 @@
 const themeChangebtn = document.getElementById('themebtn');
+const themeMenuModal = document.getElementById('modal-theme');
 
 document.getElementById('light').addEventListener('click', function () {
     document.body.classList.remove('dark-mode');
@@ -15,22 +16,29 @@ document.getElementById('dark').addEventListener('click', function () {
 
 function showMenu(event) {
     event.stopPropagation();
-    const menuTheme = document.getElementById('modal-theme');
-    const display = getComputedStyle(menuTheme).display;
+    const themeMenuModal = document.getElementById('modal-theme');
+    const display = getComputedStyle(themeMenuModal).display;
 
     if (display == 'none') {
-        menuTheme.style.display = 'block';
+        themeMenuModal.style.display = 'block';
+        themeMenuModal.classList.toggle('open');
     } else {
-        menuTheme.style.display = 'none';
+        themeMenuModal.style.display = 'none';
     }
 }
-themeChangebtn.addEventListener('click', showMenu);
+themeChangebtn.addEventListener('click', function () {
+
+    if (themeMenuModal.classList.contains('open')) {
+        themeMenuModal.classList.remove('open');
+    } else {
+        themeMenuModal.classList.add('open');
+    }
+});
 
 document.addEventListener('click', function (event) {
-    const modal = document.getElementById('modal-theme');
-
-    if (modal.style.display === 'block') {
-        modal.style.display = 'none';
+    if (themeMenuModal.style.display === 'block') {
+        themeMenuModal.style.display = 'none';
+        themeMenuModal.classList.remove('open');
     }
 });
 

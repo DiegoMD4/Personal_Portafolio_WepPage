@@ -50,6 +50,9 @@ const changeLanguage = () => {
   document.querySelectorAll(".contact-links a")[2].innerHTML = `${emailSvg}${texts[currentLanguage].contact.email}`;
 
   document.querySelector(".footer a").innerHTML = `${resumeSvg}${texts[currentLanguage].footer.resume}`;
+
+  document.querySelector(".footer a").href = texts[currentLanguage].footer.href
+  document.querySelector(".footer a").download = texts[currentLanguage].footer.download
 };
 
 languageChangeBtn.addEventListener("click", changeLanguage);
