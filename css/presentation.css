@@ -10,11 +10,12 @@
     align-items: center;
     margin-bottom: 1.6rem;
 }
-.head-presentation img{
+.head-presentation img {
     width: 6.4rem;
-    border-radius: 999px;
+    height: 6.4rem; /* Asegúrate de que la altura sea la misma que el ancho */
+    border-radius: 50%; /* 50% es suficiente para hacerla circular */
+    object-fit: cover;  /* Esto asegura que la imagen se escale correctamente dentro del contenedor */
 }
-
 .head-presentation>a {
     text-decoration: none;
     padding: .4rem 1.2rem;
