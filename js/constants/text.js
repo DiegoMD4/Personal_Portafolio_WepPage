@@ -34,7 +34,7 @@ export const texts = {
       }
     },
     skills: {
-      title: "<i class='fa-solid fa-user-check'></i> Skills",
+      title: "Skills",
       technicalSkills: {
         title: "Technical skills",
         description:
@@ -97,7 +97,7 @@ export const texts = {
       }
     },
     skills: {
-      title: "<i class='fa-solid fa-user-check'></i> Habilidades",
+      title: "Habilidades",
       technicalSkills: {
         title: "Habilidades técnicas",
         description:

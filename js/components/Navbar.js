@@ -1,6 +1,6 @@
 import { $, $$ } from '../utils/utils.js';
 import { texts } from '../constants/text.js';
-import { SetLanguage } from '../../index.js';
+import { SetLanguage, setTheme } from '../../index.js';
 
 export function RenderNavbar(currentLanguage) {
     let language = currentLanguage === 'en' ? texts.en : texts.es;
@@ -32,31 +32,15 @@ export function RenderNavbar(currentLanguage) {
     const themeChangebtn = $('#themebtn');
     const themeMenuModal = $('#modal-theme');
     themeChangebtn.addEventListener('click', () => themeMenuModal.classList.toggle('open'));
-    document.getElementById('light').addEventListener('click', function () {
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light');
-        themeChangebtn.classList.remove('ti-moon');
+    document.getElementById('light').addEventListener('click', () => {
+        setTheme('light-mode', 'ti-sun'); themeChangebtn.classList.remove('ti-moon');
         themeChangebtn.classList.add('ti-sun');
         themeMenuModal.classList.remove('open');
     });
-    document.getElementById('dark').addEventListener('click', function () {
-        localStorage.setItem('theme', 'dark');
-        themeChangebtn.classList.remove('ti-sun');
+    document.getElementById('dark').addEventListener('click', () => {
+        setTheme('dark-mode'); themeChangebtn.classList.remove('ti-sun');
         themeChangebtn.classList.add('ti-moon');
-        document.body.classList.add('dark-mode');
         themeMenuModal.classList.remove('open');
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeChangebtn.classList.remove('ti-sun');
-            themeChangebtn.classList.add('ti-moon');
-        } else {
-            document.body.classList.remove('dark-mode');
-            themeChangebtn.classList.remove('ti-moon');
-            themeChangebtn.classList.add('ti-sun');
-        }
     });
 
     //cambiar el idioma
