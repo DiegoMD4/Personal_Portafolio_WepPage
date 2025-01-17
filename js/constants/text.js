@@ -47,7 +47,7 @@ export const texts = {
       }
     },
     contact: {
-      title: "<i class='fa-solid fa-address-book'></i> Contact",
+      title: "Contact",
       subtitle: "Let's work together!",
       description:
         "If you're looking for a <strong>dedicated developer who is problem-solving oriented and always striving for excellence</strong>, I'm here to assist you!",
@@ -110,7 +110,7 @@ export const texts = {
       }
     },
     contact: {
-      title: "<i class='fa-solid fa-address-book'></i> Contacto",
+      title: "Contacto",
       subtitle: "¡Trabajemos juntos!",
       description:
         "Si buscas un <strong>desarrollador dedicado, orientado a la resolución de problemas y siempre esforzándose por la excelencia</strong>, ¡estoy aquí para ayudarte!",

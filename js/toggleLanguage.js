@@ -1,4 +1,4 @@
-import { githubSvg, resumeSvg, emailSvg } from "./constants/svg.js";
+/* import { githubSvg, resumeSvg, emailSvg } from "./constants/svg.js";
 import { texts } from "./constants/text.js";
 
 const languageChangeBtn = document.getElementById("languageChange-btn");
@@ -58,3 +58,4 @@ const changeLanguage = () => {
 };
 
 languageChangeBtn.addEventListener("click", changeLanguage);
+ */
