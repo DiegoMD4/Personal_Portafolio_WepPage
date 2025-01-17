@@ -3,7 +3,7 @@ import { $ } from "../utils/utils.js";
 
 export function RenderSectionPresentation(currentLanguage) {
     let language = currentLanguage === 'en' ? texts.en : texts.es;
-    const $section = $('#presentation')
+    const $section = $('.section-presentation')
     $section.innerHTML = `<div class="head-presentation">
         <img src="assets/me.jpg" alt="Diego Montoya" />
         <a href="https://linkedin.com/in/diego-montoya-1546aa218" target="_blank">${language.presentation.available}</a>
