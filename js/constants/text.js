@@ -1,5 +1,6 @@
 export const texts = {
   en: {
+    doc_title: 'Diego\'s Portafolio',
     header: {
       about: "About me",
       projects: "Projects",
@@ -18,20 +19,22 @@ export const texts = {
       email: "Email"
     },
     projects: {
-      title: "<i class='fa-solid fa-code'></i> Projects",
-      project1: {
+      title: "Projects",
+      projects: [{
         title: "Help Desk system",
         description:
           "Web system developed to handle user tickets and maintain a record of resolved technical issues. -Note that the code is not for the final product.",
         code: "Code",
-        demo: "Demo"
+        demo: "Demo",
+        image: "/assets/516_1x_shots_so.png"
       },
-      project2: {
+      {
         title: "CEI Website",
         description:
           "Website created for the Center for Entrepreneurship and Innovation at CEUTEC. I contributed as a backend developer alongside my classmates in this university project.",
-        code: "Code"
-      }
+        code: "Code",
+        image: "/assets/CEI-WEB.jpg"
+      }]
     },
     skills: {
       title: "Skills",
@@ -63,6 +66,7 @@ export const texts = {
     }
   },
   es: {
+    doc_title: 'Portafolio de Diego',
     header: {
       about: "Sobre mí",
       projects: "Proyectos",
@@ -81,20 +85,22 @@ export const texts = {
       email: "Correo"
     },
     projects: {
-      title: "<i class='fa-solid fa-code'></i> Proyectos",
-      project1: {
+      title: "Proyectos",
+      projects: [{
         title: "Sistema de Help Desk",
         description:
           "Sistema web desarrollado para gestionar tickets de usuarios y mantener un registro de problemas técnicos resueltos. -Tenga en cuenta que el código no es para el producto final.",
         code: "Código",
-        demo: "Demo"
+        demo: "Demo",
+        image: "/assets/516_1x_shots_so.png"
       },
-      project2: {
+      {
         title: "Sitio web de CEI",
         description:
           "Sitio web creado para el Centro de Emprendimiento e Innovación en CEUTEC. Contribuí como desarrollador backend junto con mis compañeros en este proyecto universitario.",
-        code: "Código"
-      }
+        code: "Código",
+        image: "/assets/CEI-WEB.jpg"
+      }]
     },
     skills: {
       title: "Habilidades",
