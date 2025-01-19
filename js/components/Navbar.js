@@ -32,6 +32,12 @@ export function RenderNavbar(currentLanguage) {
     const themeChangebtn = $('#themebtn');
     const themeMenuModal = $('#modal-theme');
     themeChangebtn.addEventListener('click', () => themeMenuModal.classList.toggle('open'));
+    document.addEventListener('click', function () {
+        if (!themeMenuModal.contains(event.target) && !themeChangebtn.contains(event.target)) {
+            themeMenuModal.classList.remove('open');
+        }
+    });
+
     document.getElementById('light').addEventListener('click', () => {
         setTheme('light-mode', 'ti-sun'); themeChangebtn.classList.remove('ti-moon');
         themeChangebtn.classList.add('ti-sun');
