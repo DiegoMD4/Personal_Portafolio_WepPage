@@ -13,8 +13,8 @@ export function RenderNavbar(currentLanguage) {
        <i id="themebtn" class="ti ti-sun"><i class="ti ti-caret-down-filled"></i></i>
  <div id="modal-theme" class="theme-menu">
         <ul>
-          <li id="light">Light</li>
-          <li id="dark">Dark</li>
+          <li id="light">${language.header.themeLight}</li>
+          <li id="dark">${language.header.themeDark}</li>
           <li id="languageChange-btn">
             <span id="langText">${language.header.language}</span><img id="flag" src="/assets/${currentLanguage === 'en' ? 'spanish' : 'english'}.png" alt="language">
           </li>
