@@ -12,9 +12,9 @@
 }
 .head-presentation img {
     width: 6.4rem;
-    height: 6.4rem; /* Asegúrate de que la altura sea la misma que el ancho */
-    border-radius: 50%; /* 50% es suficiente para hacerla circular */
-    object-fit: cover;  /* Esto asegura que la imagen se escale correctamente dentro del contenedor */
+    height: 6.4rem; 
+    border-radius: 50%;
+    object-fit: cover;  
 }
 .head-presentation>a {
     text-decoration: none;
