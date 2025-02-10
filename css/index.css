@@ -35,14 +35,13 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
-body .light-mode {
+body.light-mode {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     font-weight: 400;
-    --background-image: radial-gradient(ellipse 80% 80% at 50% -20%, #d9d8ff80, #ffffffe6);
-    --main-background: rgb(249, 250, 251);
+
     --main-title: rgb(31 41 55 / var(--tw-text-opacity));
     --p-text-color: rgb(31 41 55);
     --letter-color: rgb(75 85 99 / var(--tw-text-opacity));
@@ -61,7 +60,7 @@ body .light-mode {
     line-height: inherit;
     background-color: var(--main-background);
     color: var(--main-text);
-    background-image: radial-gradient(ellipse 80% 80% at 50% -20%, #d9d8ff80, #ffffffe6);
+    background-image: var(--background-image)
 
 }
 

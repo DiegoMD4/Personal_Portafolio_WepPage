@@ -37,7 +37,7 @@ export function SetLanguage() {
     currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
     localStorage.setItem('currentLanguage', currentLanguage);
     const $title = $('head title')
-    $title.innerHTML = texts
+    $title.innerHTML = texts[currentLanguage].doc_title
     RenderNavbar(currentLanguage);
     RenderSectionPresentation(currentLanguage)
     RenderProjects(currentLanguage)
