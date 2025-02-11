@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 Body(theme)
-RenderNavbar(currentLanguage)
+RenderNavbar(currentLanguage, theme)
 RenderSectionPresentation(currentLanguage)
 RenderProjects(currentLanguage)
 RenderSkills(currentLanguage)
@@ -38,7 +38,7 @@ export function SetLanguage() {
     localStorage.setItem('currentLanguage', currentLanguage);
     const $title = $('head title')
     $title.innerHTML = texts[currentLanguage].doc_title
-    RenderNavbar(currentLanguage);
+    RenderNavbar(currentLanguage, theme);
     RenderSectionPresentation(currentLanguage)
     RenderProjects(currentLanguage)
     RenderSkills(currentLanguage);
