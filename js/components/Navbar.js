@@ -2,15 +2,15 @@ import { $, $$ } from '../utils/utils.js';
 import { texts } from '../constants/text.js';
 import { SetLanguage, setTheme } from '../../index.js';
 
-export function RenderNavbar(currentLanguage) {
+export function RenderNavbar(currentLanguage, currentTheme) {
     let language = currentLanguage === 'en' ? texts.en : texts.es;
-
+    const iconChange = currentLanguage === 'light-mode' ? 'ti-sun' : 'ti-moon'
     const $nav = $('nav');
     const render_navbar = ` <a href="#presentation">${language.header.about}</a>
       <a href="#projects">${language.header.projects}</a>
       <a href="#skills">${language.header.skills}</a>
       <a href="#contact">${language.header.contact}</a>
-       <i id="themebtn" class="ti ti-sun"><i class="ti ti-caret-down-filled"></i></i>
+       <i id="themebtn" class="ti ${iconChange}"><i class="ti ti-caret-down-filled"></i></i>
  <div id="modal-theme" class="theme-menu">
         <ul>
           <li id="light">${language.header.themeLight}</li>
