@@ -1,7 +1,7 @@
-import { useContext, useRef } from 'react';
-import useOnClickOutside from '../hooks/useOnClickOutside';
-import '../styles/ThemeMenu.css';
-import { ThemeContext } from '../context/ThemeContext';
+import { useContext, useRef } from "react";
+import useOnClickOutside from "../hooks/useOnClickOutside";
+import "../styles/ThemeMenu.css";
+import { ThemeContext } from "../context/ThemeContext";
 
 type ThemeModalProps = {
   isOpen: boolean;
@@ -18,7 +18,9 @@ export function ThemeModal({ isOpen, onClose }: ThemeModalProps) {
         e.stopPropagation();
         onClose();
       }}
-      className={`theme-menu ${isOpen && 'open'}`}
+      className={`theme-menu ${
+        isOpen && "open"
+      } absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md`}
     >
       <ul>
         <li

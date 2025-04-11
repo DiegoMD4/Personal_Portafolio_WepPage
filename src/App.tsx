@@ -1,6 +1,6 @@
 import { Navbar } from "./components/Navbar";
 import { Section } from "./components/Section";
-import { ThemeButtons } from "./components/ThemeButtons";
+/* import { ThemeButtons } from "./components/ThemeButtons"; */
 import { TitleSection } from "./components/TitleSection";
 import { About } from "./page/About";
 import { Experience } from "./page/Experience";
@@ -13,9 +13,7 @@ function App() {
   useScrollEffects()
   return (
     <>
-      <Navbar>
-        <ThemeButtons />
-      </Navbar>
+      <Navbar></Navbar>
       <main className="px-4">
         <Section id="presentation" className="py-16 md:py-36">
           <About />

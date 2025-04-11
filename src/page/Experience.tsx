@@ -7,7 +7,7 @@ const EXPERIENCE = [
       "I collaborated with a team of developers in the design and development of responsive user interfaces. I participated in the integration of microservices through REST APIs, using React and TypeScript to ensure efficient communication between the interface and the backend.",
     link: "https://twitch.tv/midudev",
   },
- /*  {
+  /*  {
     date: "Septiembre 2022",
     title: "Principal Frontend Engineer",
     company: "Adevinta Spain",
@@ -69,7 +69,7 @@ export function ExperienceItem({
             role="link"
             className="inline-flex items-center text-lg font-medium text-[#c04f5e] dark:text-yellow-200 dark:hover:text-yellow-300 hover:text-[#be3144]"
           >
-            Saber más{" "}
+            Know more{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 icon icon-tabler icon-tabler-chevron-right"

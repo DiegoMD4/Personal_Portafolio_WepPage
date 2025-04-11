@@ -1,3 +1,4 @@
+
 @keyframes scale-up-center {
     from {
       transform: scale(0.8);
@@ -18,18 +19,17 @@
     padding: 4px;
     position: absolute;
     top: 40px;
-    right: 0;
+    /*     right: 0; */
     border-radius: 6px;
-    background-color: var(--modal-background);
+/*     background-color: var(--modal-background); */
     display: none;
     transform-origin: center center;
 
 }
 
 .theme-menu.open {
-    display: block;
-    /* Muestra el menú */
-    animation: scale-up-center .15s cubic-bezier(.25, .46, .45, .94) both;
+    display: inline;
+    animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .theme-menu ul li {
