@@ -1,6 +1,6 @@
-import { CiLinkedin } from 'react-icons/ci';
-import { MdOutlineMailOutline } from 'react-icons/md';
-import { Badge } from '../components/Badge';
+import { CiLinkedin } from "react-icons/ci";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { Badge } from "../components/Badge";
 
 export function About() {
   return (
@@ -8,7 +8,7 @@ export function About() {
       <div className="flex gap-4 mb-4">
         <img
           className="rounded-full shadow-lg size-16"
-          src="/src/assets/foto.webp"
+          src="assets/foto.webp"
           alt="Diego Montoya"
         />
         <a
