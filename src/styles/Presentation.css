@@ -1,7 +1,7 @@
-.section-presentation {
-    padding: 14.4rem 0 7.4rem 0;
+/* .section-presentation{
+   
 }
-
+ */
 .head-presentation {
     width: 100%;
     display: flex;
@@ -12,11 +12,8 @@
 }
 
 .head-presentation img {
-    width: 64px;
-    height: 64px;
-    border-radius: 9999px;
-    object-fit: cover;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    width: 6.4rem;
+    border-radius: 999px;
 }
 
 .head-presentation>a {
@@ -41,8 +38,7 @@
     font-size: 20px;
     color: var(--sub-p-text);
     line-height: 28px;
-    max-width: 600px;
-    display: block;
+
     margin-top: 2.4rem;
 }
 
