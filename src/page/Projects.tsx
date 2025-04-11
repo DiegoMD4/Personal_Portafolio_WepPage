@@ -22,7 +22,7 @@ const PROJECTS = [
       "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
     link: "https://drp-theta.vercel.app/login",
     github: "https://github.com/pheralb/svgl",
-    image: "/public/assets/417shots_so.webp",
+    image: "assets/417shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
   {
@@ -30,7 +30,7 @@ const PROJECTS = [
     description:
       "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
     link: "https://suiss.vercel.app/landing",
-    image: "/public/assets/340shots_so.webp",
+    image: "assets/340shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
 ];
