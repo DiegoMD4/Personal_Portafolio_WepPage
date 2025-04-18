@@ -2,15 +2,18 @@ import { useContext, useRef } from "react";
 import useOnClickOutside from "../hooks/useOnClickOutside";
 import "../styles/ThemeMenu.css";
 import { ThemeContext } from "../context/ThemeContext";
-
+import { LanguageContext } from "../context/LanguageContext";
+import modalText from "../json/modal.json"
 type ThemeModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 export function ThemeModal({ isOpen, onClose }: ThemeModalProps) {
   const { setDark, setLight } = useContext(ThemeContext);
+  const { changeLanguage, language } = useContext(LanguageContext);
   const modalRef = useRef(null);
   useOnClickOutside(modalRef, onClose);
+  const text = language === "es-ES" ? modalText.es : modalText.en;
   return (
     <div
       ref={modalRef}
@@ -27,16 +30,17 @@ export function ThemeModal({ isOpen, onClose }: ThemeModalProps) {
           className="px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
           onClick={setDark}
         >
-          Dark
+          {text[0].btn1}
         </li>
         <li
           className="px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
           onClick={setLight}
         >
-          Light
+          {text[1].btn2}
         </li>
-        <li className="px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-          Cambiar idioma
+        <li className="px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+        onClick={changeLanguage}>
+          {text[2].btn3}
         </li>
       </ul>
     </div>

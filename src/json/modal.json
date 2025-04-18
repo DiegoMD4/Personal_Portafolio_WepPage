@@ -1,0 +1,24 @@
+{
+    "en": [
+        {
+            "btn1": "Dark"
+        },
+        {
+            "btn2": "Light"
+        },
+        {
+            "btn3": "Español"
+        }
+    ],
+    "es": [
+        {
+            "btn1": "Oscuro"
+        },
+        {
+            "btn2": "Claro"
+        },
+        {
+            "btn3": "English"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "en": [
+        {
+            "text": "About me",
+            "id": "#presentation"
+        },
+        {
+            "text": "Experience",
+            "id": "#experience"
+        },
+        {
+            "text": "Projects",
+            "id": "#projects"
+        },
+        {
+            "text": "Contact",
+            "id": "#contact"
+        }
+    ],
+    "es": [
+        {
+            "text": "Sobre mí",
+            "id": "#presentation"
+        },
+        {
+            "text": "Experiencia",
+            "id": "#experience"
+        },
+        {
+            "text": "Proyectos",
+            "id": "#projects"
+        },
+        {
+            "text": "Contacto",
+            "id": "#contact"
+        }
+    ]
+}

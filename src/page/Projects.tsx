@@ -3,6 +3,8 @@ import { LinkButton } from "../components/icons/LinkButton";
 import { GitHub } from "../components/icons/GitHub";
 import { Link } from "../components/icons/Link";
 import { TailwindCSS } from "../components/icons/Tailwind";
+import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageContext";
 const TAGS = {
   NEXT: {
     name: "Next.js",
@@ -15,30 +17,53 @@ const TAGS = {
     icon: TailwindCSS,
   },
 };
-const PROJECTS = [
+const enProjectDescription = [
   {
-    title: "SDRP - A beautiful library with SVG logos",
+    title: "SDRP - Programmatic Regulation Direction System",
     description:
-      "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
+      "This system facilitates strategic decision-making, accountability, and the alignment of institutional programs with governmental objectives.",
     link: "https://drp-theta.vercel.app/login",
-    github: "https://github.com/pheralb/svgl",
+    github: "",
     image: "assets/417shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
   {
-    title: "SUISS - Retos de programación con JavaScript y TypeScript",
+    title: "SUISS - Unified Social Programs Information System",
+    description: `SUISS is an official tool of the Government of Honduras, developed by the Ministry of Social Development. This platform centralizes all relevant information on social programs, integrating data from multiple sources to provide a unified and efficient experience.`,
+    link: "https://suiss.vercel.app/landing",
+    image: "assets/340shots_so.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+];
+const esProjectDescription = [
+  {
+    title: "SDRP - Sistema Dirección de Regulación Programática",
     description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+      "Este sistema facilita la toma de decisiones estratégicas, la rendición de cuentas, y el alineamiento de los programas institucionales con los objetivos gubernamentales.",
+    link: "https://drp-theta.vercel.app/login",
+    github: "",
+    image: "assets/417shots_so.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    title: "SUISS - Sistema Unificado de Información de Programas Sociales",
+    description: `SUISS es una herramienta oficial del gobierno de Honduras, desarrollada por la Secretaría de Desarrollo Social. Esta plataforma centraliza toda la información relevante sobre programas sociales, integrando datos de múltiples fuentes para ofrecer una experiencia unificada y eficiente.`,
     link: "https://suiss.vercel.app/landing",
     image: "assets/340shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
 ];
 export function Projects() {
+  const { language } = useContext(LanguageContext);
+  const PROJECTS =
+    language === "es-ES" ? esProjectDescription : enProjectDescription;
   return (
     <div className="flex flex-col gap-y-16">
       {PROJECTS.map(({ image, title, description, tags, github, link }) => (
-        <article className="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <article
+          key={title}
+          className="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0"
+        >
           <div className="w-full md:w-1/2">
             <div className="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
               <img
@@ -57,11 +82,11 @@ export function Projects() {
             <div className="flex flex-wrap mt-2">
               <ul className="flex flex-row mb-2 gap-x-2">
                 {tags.map((tag) => (
-                  <li>
+                  <li key={tag.name}>
                     <span
                       className={`flex gap-x-2 rounded-full text-xs ${tag.className} py-1 px-2 `}
                     >
-                        <tag.icon styles="size-4"/>
+                      <tag.icon styles="size-4" />
                       {tag.name}
                     </span>
                   </li>
@@ -80,7 +105,7 @@ export function Projects() {
                 )}
                 {link && (
                   <LinkButton href={link}>
-                    <Link styles="size-4"/>
+                    <Link styles="size-4" />
                     Preview
                   </LinkButton>
                 )}

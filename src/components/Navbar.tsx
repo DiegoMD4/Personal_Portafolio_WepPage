@@ -4,22 +4,15 @@ import useScrollEffects from "../hooks/useScroll";
 import { ThemeModal } from "./ThemeModal";
 import { FaCaretDown } from "react-icons/fa";
 import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
-
-const NAVBAR_LINKS = [
-  { text: "About me", id: "#presentation" },
-  { text: "Experience", id: "#experience" },
-  { text: "Projects", id: "#projects" },
-  { text: "Contact", id: "#contact" },
-];
-/* 
-type NavbarProps = {
-  children?: React.ReactNode;
-}; */
+import { LanguageContext } from "../context/LanguageContext";
+import navbarText from "../json/navbar.json";
 
 export function Navbar() {
   const activeSection = useScrollEffects();
   const { theme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const NAVBAR_LINKS = language === "es-ES" ? navbarText.es : navbarText.en;
   return (
     <header className="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2">
       <nav
