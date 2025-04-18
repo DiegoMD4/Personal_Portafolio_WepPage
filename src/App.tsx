@@ -7,10 +7,13 @@ import { Experience } from "./page/Experience";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { Projects } from "./page/Projects";
 import useScrollEffects from "./hooks/useScroll";
-
+import { Skills } from "./page/Skills";
+import { useContext } from "react";
+import { LanguageContext } from "./context/LanguageContext";
 
 function App() {
-  useScrollEffects()
+  useScrollEffects();
+  const { language } = useContext(LanguageContext);
   return (
     <>
       <Navbar></Navbar>
@@ -22,14 +25,22 @@ function App() {
           <Section id="experience">
             <TitleSection>
               <HiOutlineBriefcase className="size-8" />
-              Experience
+              {language === "es-ES" ? "Experiencia" : "Experience"}
             </TitleSection>
             <Experience />
+            <h3 className="mt-10 flex items-center mb-6 text-xl font-semibold gap-x-3 text-black/80 dark:text-white">
+              {language === "es-ES"
+                ? "Experiencia en las siguientes tecnologías: "
+                : "Experience in the following technologies:"}
+            </h3>
+            <div className="mt-8">
+              <Skills />
+            </div>
           </Section>
           <Section id="projects">
             <TitleSection>
               <HiOutlineBriefcase className="size-8" />
-              Projects
+              {language === "es-ES" ? "Proyectos" : "Projects"}
             </TitleSection>
             <Projects />
           </Section>

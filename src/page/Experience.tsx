@@ -1,26 +1,14 @@
-const EXPERIENCE = [
-  {
-    date: "Currently working at...",
-    title: "Frontend developer",
-    company: "Oncorp S. de R.L.",
-    description:
-      "I collaborated with a team of developers in the design and development of responsive user interfaces. I participated in the integration of microservices through REST APIs, using React and TypeScript to ensure efficient communication between the interface and the backend.",
-    link: "https://twitch.tv/midudev",
-  },
-  /*  {
-      date: "Septiembre 2022",
-      title: "Principal Frontend Engineer",
-      company: "Adevinta Spain",
-      description:
-        "Responsable de la plataforma, componentes y utilidades para la creación y desarrollo de aplicaciones web. Mejora de un 30% en la entrega de software. Implantación de medidas de integración continua y despliegue con A/B testing en más de 15 equipos.",
-    }, */
-];
+import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageContext";
+import text from "../json/experience.json";
 
 export function Experience() {
+  const { language } = useContext(LanguageContext);
+  const EXPERIENCE = language === "es-ES" ? text.es : text.en;
   return (
     <ol className="relative mt-16">
       {EXPERIENCE.map((experience) => (
-        <li className="">
+        <li className="" key={experience.company}>
           <ExperienceItem {...experience} />
         </li>
       ))}
@@ -42,6 +30,7 @@ export function ExperienceItem({
   link,
   date,
 }: ExperienceItemProps) {
+  const { language } = useContext(LanguageContext);
   return (
     <div className="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]">
       <div className="relative pb-12 md:col-span-2">
@@ -65,11 +54,12 @@ export function ExperienceItem({
         {description}
         {link && (
           <a
-            href="/"
+            href={link}
+            target="_blank"
             role="link"
             className="inline-flex items-center text-lg font-medium text-[#c04f5e] dark:text-yellow-200 dark:hover:text-yellow-300 hover:text-[#be3144]"
           >
-            Know more{" "}
+            {language === "es-ES" ? "Saber más" : "Know more"}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 icon icon-tabler icon-tabler-chevron-right"

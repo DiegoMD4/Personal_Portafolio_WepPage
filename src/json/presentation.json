@@ -1,0 +1,22 @@
+{
+    "en": {
+        "title": "Hi, I'm Diego",
+        "description": [
+            "As a",
+            "Computer Engineer and Full Stack Developer",
+            "from 🇭🇳, I thrive on crafting innovative software solutions that push the boundaries of creativity."
+        ],
+        "available": "Available for work",
+        "email": "Email"
+    },
+    "es": {
+        "title": "Hola, soy Diego",
+        "description": [
+            "Como",
+            "Ingeniero en Computación y Desarrollador Full Stack",
+            "de 🇭🇳, me apasiona crear soluciones de software innovadoras que empujen los límites de la creatividad."
+        ],
+        "available": "Disponible para trabajar",
+        "email": "Correo"
+    }
+}
