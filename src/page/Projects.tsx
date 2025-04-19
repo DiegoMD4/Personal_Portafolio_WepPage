@@ -5,6 +5,8 @@ import { Link } from "../components/icons/Link";
 import { TailwindCSS } from "../components/icons/Tailwind";
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageContext";
+import Nodejs from "../components/icons/Nodejs";
+import { MicrosoftSQLServer } from "../components/icons/StackIcons";
 const TAGS = {
   NEXT: {
     name: "Next.js",
@@ -16,6 +18,16 @@ const TAGS = {
     className: "bg-[#003159] text-white",
     icon: TailwindCSS,
   },
+  NODE: {
+    name: "Node Js",
+    className: "bg-lime-400 text-white",
+    icon: Nodejs,
+  },
+  SQLServer: {
+    name: "SQL Server",
+    className: "bg-red-400 text-white",
+    icon: MicrosoftSQLServer,
+  },
 };
 const enProjectDescription = [
   {
@@ -23,16 +35,24 @@ const enProjectDescription = [
     description:
       "This system facilitates strategic decision-making, accountability, and the alignment of institutional programs with governmental objectives.",
     link: "https://drp-theta.vercel.app/login",
-    github: "",
     image: "assets/417shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
   {
     title: "SUISS - Unified Social Programs Information System",
-    description: `SUISS is an official tool of the Government of Honduras, developed by the Ministry of Social Development. This platform centralizes all relevant information on social programs, integrating data from multiple sources to provide a unified and efficient experience.`,
+    description: `This platform centralizes all relevant information on social programs, integrating data from multiple sources to provide a unified and efficient experience.`,
     link: "https://suiss.vercel.app/landing",
     image: "assets/340shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+
+  {
+    title: "CEI Website",
+    description: `Website created for the Center for Entrepreneurship and Innovation at CEUTEC. I contributed as a backend developer alongside my classmates in this university project.`,
+    link: "https://suiss.vercel.app/landing",
+    github: "https://github.com/MGeovany/cei-web-portal",
+    image: "assets/CEI-WEB.jpg",
+    tags: [TAGS.NODE, TAGS.SQLServer],
   },
 ];
 const esProjectDescription = [
@@ -41,16 +61,22 @@ const esProjectDescription = [
     description:
       "Este sistema facilita la toma de decisiones estratégicas, la rendición de cuentas, y el alineamiento de los programas institucionales con los objetivos gubernamentales.",
     link: "https://drp-theta.vercel.app/login",
-    github: "",
     image: "assets/417shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
   {
     title: "SUISS - Sistema Unificado de Información de Programas Sociales",
-    description: `SUISS es una herramienta oficial del gobierno de Honduras, desarrollada por la Secretaría de Desarrollo Social. Esta plataforma centraliza toda la información relevante sobre programas sociales, integrando datos de múltiples fuentes para ofrecer una experiencia unificada y eficiente.`,
+    description: `Esta plataforma centraliza toda la información relevante sobre programas sociales, integrando datos de múltiples fuentes para ofrecer una experiencia unificada y eficiente.`,
     link: "https://suiss.vercel.app/landing",
     image: "assets/340shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    title: "Sitio web de CEI",
+    description: `Sitio web creado para el Centro de Emprendimiento e Innovación en CEUTEC. Contribuí como desarrollador backend junto con mis compañeros en este proyecto universitario.`,
+    image: "assets/CEI-WEB.jpg",
+    github: "https://github.com/MGeovany/cei-web-portal",
+    tags: [TAGS.NODE, TAGS.SQLServer],
   },
 ];
 export function Projects() {
@@ -67,7 +93,7 @@ export function Projects() {
           <div className="w-full md:w-1/2">
             <div className="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
               <img
-                alt="Recién llegado vs 5 años en Nueva Zelanda"
+                alt="project image"
                 className="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
                 loading="lazy"
                 src={image}

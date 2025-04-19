@@ -5,20 +5,20 @@ import {
   HTML5,
   JavaScript,
   MongoDB,
-  MySQL,
   Nodejs,
   React,
   TypeScript,
   Nextjs,
   TailwindCSS,
   GitHub,
+  MicrosoftSQLServer,
 } from "../components/icons/StackIcons";
 
 export function Skills() {
   const Logos = [
     JavaScript,
     React,
-    MySQL,
+    MicrosoftSQLServer,
     Git,
     GitHub,
     Nodejs,
@@ -33,7 +33,7 @@ export function Skills() {
   const LogosNames = [
     "JavaScript",
     "React",
-    "MySQL",
+    "SQLServer",
     "Git",
     "GitHub",
     "Nodejs",

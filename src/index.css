@@ -114,3 +114,128 @@ nav {
     @apply shadow-lg ring-1 backdrop-blur ring-white/10;
   }
 }
+
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+/* first button */
+.btn-1 {
+  --width: 350px;
+  --height: 45px;
+  --tooltip-height: 35px;
+  --tooltip-width: 320px;
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: #705CFF;
+  --tooltip-color: #fff;
+  width: var(--width);
+  height: var(--height);
+  background: #705CFF;
+  position: relative;
+  text-align: center;
+  border-radius: 10rem;
+  font-family: "Arial";
+  transition: background 0.3s;
+}
+
+.btn-1::before {
+  position: absolute;
+  content: attr(data-tooltip);
+  width: var(--tooltip-width);
+  height: var(--tooltip-height);
+  background-color: #705CFF;
+  font-size: 0.9rem;
+  color: white;
+  border-radius: .25em;
+  line-height: var(--tooltip-height);
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+  left: calc(50% - var(--tooltip-width) / 2);
+}
+
+.btn-1::after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: var(--tooltip-color);
+  left: calc(50% - 10px);
+  bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+}
+
+.btn-1::after,
+.btn-1::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-1-wrapper,
+.text,
+.icon-download {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #fff;
+}
+
+.text {
+  top: 0
+}
+
+.text,
+.icon-download {
+  transition: top 0.5s;
+}
+
+.icon-download {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-download svg {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-1:hover {
+  background: #705CFF;
+}
+
+.btn-1:hover .text {
+  top: -100%;
+}
+
+.btn-1:hover .icon-download {
+  top: 0;
+}
+
+.btn-1:hover:before,
+.button:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn-1:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.btn-1:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
