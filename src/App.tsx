@@ -54,10 +54,9 @@ function App() {
             </TitleSection>
             <Contact />
           </Section>
+        <Footer />
         </div>
       </main>
-
-      <Footer />
     </>
   );
 }

@@ -17,6 +17,13 @@
 
 :root {
   color-scheme: light dark;
+  --button-color: #be3144;
+  /* rojo modo claro */
+  --tooltip-color: #fff;
+  /* blanco modo claro */
+  --tooltip-text-color: #ffffff;
+  /* casi negro modo claro */
+  --text-color: #fff
 }
 
 html {
@@ -24,8 +31,18 @@ html {
   scroll-behavior: smooth;
 }
 
+html.dark {
+  --button-color: #facc15;
+  /* amarillo modo oscuro */
+  --tooltip-color: #fff;
+  /* gris oscuro modo oscuro */
+  --tooltip-text-color: #111111e6;
+  /* blanco texto en modo oscuro */
+  --text-color: #111111e6;
+}
+
 body {
-  color: rgba(17, 17, 17, 0.9);
+  color: rgba(17, 17, 17, 0.902);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -131,11 +148,10 @@ nav {
   --tooltip-height: 35px;
   --tooltip-width: 320px;
   --gap-between-tooltip-to-button: 18px;
-  --button-color: #705CFF;
-  --tooltip-color: #fff;
+
   width: var(--width);
   height: var(--height);
-  background: #705CFF;
+  background: var(--button-color);
   position: relative;
   text-align: center;
   border-radius: 10rem;
@@ -148,9 +164,9 @@ nav {
   content: attr(data-tooltip);
   width: var(--tooltip-width);
   height: var(--tooltip-height);
-  background-color: #705CFF;
+  background-color: var(--button-color);
   font-size: 0.9rem;
-  color: white;
+  color: var(--tooltip-text-color);
   border-radius: .25em;
   line-height: var(--tooltip-height);
   bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
@@ -163,7 +179,7 @@ nav {
   width: 0;
   height: 0;
   border: 10px solid transparent;
-  border-top-color: var(--tooltip-color);
+  /*   border-top-color: var(--tooltip-color); */
   left: calc(50% - 10px);
   bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
 }
@@ -189,11 +205,11 @@ nav {
   width: 100%;
   height: 100%;
   left: 0;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .text {
-  top: 0
+  top: 0;
 }
 
 .text,
@@ -202,7 +218,7 @@ nav {
 }
 
 .icon-download {
-  color: #fff;
+  color: var(--text-color);
   top: 100%;
   display: flex;
   align-items: center;
@@ -215,7 +231,7 @@ nav {
 }
 
 .btn-1:hover {
-  background: #705CFF;
+  background: var(--button-color);
 }
 
 .btn-1:hover .text {
@@ -227,7 +243,7 @@ nav {
 }
 
 .btn-1:hover:before,
-.button:hover:after {
+.btn-1:hover:after {
   opacity: 1;
   visibility: visible;
 }
