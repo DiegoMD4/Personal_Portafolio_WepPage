@@ -15,7 +15,7 @@ export default function Contact() {
       <p className="text-[#be3144] dark:text-yellow-400 pt-3">
         <strong>{contactText.text3}</strong>
       </p>
-      <span className="flex gap-x-2 py-3">
+      <span className="flex gap-x-2 py-3 max-sm:justify-center">
         <a href="https://github.com/DiegoMD4" target="_blank">
           <button
             type="button"

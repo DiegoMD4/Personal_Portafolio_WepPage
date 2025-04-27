@@ -49,7 +49,6 @@ const enProjectDescription = [
   {
     title: "CEI Website",
     description: `Website created for the Center for Entrepreneurship and Innovation at CEUTEC. I contributed as a backend developer alongside my classmates in this university project.`,
-    link: "https://suiss.vercel.app/landing",
     github: "https://github.com/MGeovany/cei-web-portal",
     image: "assets/CEI-WEB.jpg",
     tags: [TAGS.NODE, TAGS.SQLServer],
