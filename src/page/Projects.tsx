@@ -34,7 +34,7 @@ const enProjectDescription = [
     title: "SDRP - Programmatic Regulation Direction System",
     description:
       "This system facilitates strategic decision-making, accountability, and the alignment of institutional programs with governmental objectives.",
-    link: "https://drp-theta.vercel.app/login",
+/*     link: "https://drp-theta.vercel.app/login", */
     image: "assets/417shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
@@ -59,7 +59,7 @@ const esProjectDescription = [
     title: "SDRP - Sistema Dirección de Regulación Programática",
     description:
       "Este sistema facilita la toma de decisiones estratégicas, la rendición de cuentas, y el alineamiento de los programas institucionales con los objetivos gubernamentales.",
-    link: "https://drp-theta.vercel.app/login",
+  /*   link: "https://drp-theta.vercel.app/login", */
     image: "assets/417shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
