@@ -2,18 +2,18 @@
     "en": [
         {
             "date": "September 2024 - Present",
-            "title": "Frontend developer",
+            "title": "Frontend Developer",
             "company": "Oncorp S. de R.L.",
-            "description": "I collaborated with a team of developers in the design and development of responsive user interfaces. I participated in the integration of microservices through REST APIs, using React and TypeScript to ensure efficient communication between the interface and the backend.",
+            "description": "Design and build responsive, high-performance user interfaces using React and TypeScript. Architect the integration of microservices through REST APIs to guarantee seamless, scalable, and efficient communication between client-side components and backend systems.",
             "link": "https://oncorp.io/"
         }
     ],
     "es": [
         {
-            "date": "Septiembre 2024 -  Actualidad",
+            "date": "Septiembre 2024 - Actualidad",
             "title": "Desarrollador Frontend",
             "company": "Oncorp S. de R.L.",
-            "description": "Colaboré con un equipo de desarrolladores en el diseño y desarrollo de interfaces de usuario responsivas. Participé en la integración de microservicios mediante APIs REST, utilizando React y TypeScript para asegurar una comunicación eficiente entre la interfaz y el backend.",
+            "description": "Diseño y desarrollo interfaces de usuario responsivas y de alto rendimiento utilizando React y TypeScript. Coordino la integración de microservicios mediante APIs REST, garantizando una comunicación fluida, escalable y eficiente entre los componentes del cliente y los sistemas backend.",
             "link": "https://oncorp.io/"
         }
     ]
