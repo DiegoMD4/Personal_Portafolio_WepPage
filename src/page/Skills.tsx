@@ -4,14 +4,14 @@ import {
   Git,
   HTML5,
   JavaScript,
-  MongoDB,
+  Firebase,
   Nodejs,
   React,
   TypeScript,
   Nextjs,
   TailwindCSS,
   GitHub,
-  MicrosoftSQLServer,
+  MySQL,
 } from "../components/icons/StackIcons";
 
 export function Skills() {
@@ -19,12 +19,12 @@ export function Skills() {
   const skillsData = [
     { name: "JavaScript", Icon: JavaScript },
     { name: "React", Icon: React },
-    { name: "SQLServer", Icon: MicrosoftSQLServer },
+    { name: "SQL", Icon:  MySQL},
     { name: "Git", Icon: Git },
     { name: "GitHub", Icon: GitHub },
     { name: "Nodejs", Icon: Nodejs },
     { name: "Expressjs", Icon: Expressjs },
-    { name: "MongoDB", Icon: MongoDB },
+    { name: "Firebase", Icon: Firebase },
     { name: "HTML5", Icon: HTML5 },
     { name: "CSS", Icon: CSS },
     { name: "TypeScript", Icon: TypeScript },

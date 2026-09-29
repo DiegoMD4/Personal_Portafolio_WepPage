@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="flex flex-wrap justify-center gap-4 px-4">
         {/* CV Español */}
         <a
-          href="/assets/Diego_Montoya_CV_Professional_2026.pdf"
+          href="/assets/CV_Desarrollador_FullStack_Diego_Montoya.pdf"
           download="Diego_Montoya_Desarrollador_FullStack"
           className={`flex items-center gap-x-2 px-5 py-2.5 font-medium rounded-lg text-sm transition-all duration-200 ${
             isSpanish
@@ -37,7 +37,7 @@ export default function Footer() {
 
         {/* CV Inglés */}
         <a
-          href="/assets/Diego_Montoya_CV_Professional_2026_ENG.pdf"
+          href="/assets/CV_FullStack_Developer_Diego_Montoya.pdf"
           download="Diego_Montoya_FullStack_Developer"
           className={`flex items-center gap-x-2 px-5 py-2.5 font-medium rounded-lg text-sm transition-all duration-200 ${
             !isSpanish

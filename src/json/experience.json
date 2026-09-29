@@ -1,20 +1,32 @@
 {
     "en": [
         {
-            "date": "September 2024 - Present",
+            "date": "September 2024 – Present · Remote, Honduras",
             "title": "Frontend Developer",
             "company": "Oncorp S. de R.L.",
-            "description": "Design and build responsive, high-performance user interfaces using React and TypeScript. Architect the integration of microservices through REST APIs to guarantee seamless, scalable, and efficient communication between client-side components and backend systems.",
+            "description": "Developed dynamic and modular web interfaces using React and TypeScript, ensuring strongly typed, scalable, and easy-to-maintain code. Integrated microservices through REST APIs to efficiently connect backend business logic with the client-side user interface. Actively participated in the technical analysis and design of requirements for enterprise-level systems, translating business needs into stable software solutions. Automated critical administrative and accounting workflows, streamlining payment registration and automated invoicing for over 6,000 registered members and clients. Collaborated closely with backend teams to define data contracts (payloads), ensuring robust data consistency and synchronization.",
             "link": "https://oncorp.io/"
+        },
+        {
+            "date": "August 2025 – May 2026 · Remote, Honduras",
+            "title": "Freelance Software Developer",
+            "company": "Independent Contractor",
+            "description": "Built serverless backend workflows using Firebase Cloud Functions (Node.js/TypeScript) to handle background data processing, user authorization, and third-party event triggers. Designed and structured NoSQL real-time database schemas in Firebase Firestore, ensuring fast query performance and seamless data synchronization. Delivered a mobile application using Flutter, managing end-to-end integration with cloud services and backend endpoints for local clients."
         }
     ],
     "es": [
         {
-            "date": "Septiembre 2024 - Actualidad",
+            "date": "Septiembre 2024 – Actualidad · Remoto, Honduras",
             "title": "Desarrollador Frontend",
             "company": "Oncorp S. de R.L.",
-            "description": "Diseño y desarrollo interfaces de usuario responsivas y de alto rendimiento utilizando React y TypeScript. Coordino la integración de microservicios mediante APIs REST, garantizando una comunicación fluida, escalable y eficiente entre los componentes del cliente y los sistemas backend.",
+            "description": "Desarrollé interfaces web dinámicas y modulares con React y TypeScript, garantizando un código fuertemente tipado, escalable y fácil de mantener. Integré microservicios mediante APIs REST para conectar eficientemente la lógica de negocio del backend con la interfaz de usuario. Participé activamente en el análisis técnico y diseño de requerimientos para sistemas empresariales, traduciendo necesidades del negocio en soluciones de software estables. Automaticé flujos administrativos y contables críticos, agilizando el registro de pagos y la facturación automática para más de 6,000 miembros y clientes registrados. Colaboré estrechamente con los equipos de backend para definir contratos de datos (payloads), asegurando consistencia y sincronización de la información.",
             "link": "https://oncorp.io/"
+        },
+        {
+            "date": "Agosto 2025 – Mayo 2026 · Remoto, Honduras",
+            "title": "Desarrollador de Software Freelance",
+            "company": "Contratista Independiente",
+            "description": "Construí flujos de backend serverless con Firebase Cloud Functions (Node.js/TypeScript) para procesamiento de datos en segundo plano, autorización de usuarios y disparadores de eventos de terceros. Diseñé y estructuré esquemas de bases de datos NoSQL en tiempo real en Firebase Firestore, asegurando consultas rápidas y una sincronización de datos fluida. Entregué una aplicación móvil en Flutter, gestionando la integración completa con servicios en la nube y endpoints de backend para clientes locales."
         }
     ]
 }

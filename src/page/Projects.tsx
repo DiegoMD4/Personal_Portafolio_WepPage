@@ -6,7 +6,7 @@ import { TailwindCSS } from "../components/icons/Tailwind";
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageContext";
 import Nodejs from "../components/icons/Nodejs";
-import { MicrosoftSQLServer } from "../components/icons/StackIcons";
+import { MicrosoftSQLServer, MySQL } from "../components/icons/StackIcons";
 const TAGS = {
   NEXT: {
     name: "Next.js",
@@ -28,8 +28,22 @@ const TAGS = {
     className: "bg-red-400 text-white",
     icon: MicrosoftSQLServer,
   },
+  MYSQL: {
+    name: "MySQL",
+    className: "bg-[#00758F] text-white",
+    icon: MySQL,
+  },
 };
 const enProjectDescription = [
+  {
+    title: "Finance Tracking - Personal Finance Dashboard",
+    description:
+      "Personal finance control web app built to put Next.js to the test: every data mutation runs through Server Actions instead of API routes, pages render on the server, and authentication relies on JWT sessions stored in secure httpOnly cookies. The dashboard visualizes income, expenses, and balance trends against a MySQL schema managed with Drizzle ORM.",
+    link: "https://finance-tracking-visualizator.vercel.app/",
+    github: "https://github.com/DiegoMD4/finance_tracking",
+    image: "assets/464_1x_shots_so.webp",
+    tags: [TAGS.NEXT, TAGS.MYSQL],
+  },
   {
     title: "SDRP - Programmatic Regulation Direction System",
     description:
@@ -55,6 +69,15 @@ const enProjectDescription = [
   },
 ];
 const esProjectDescription = [
+  {
+    title: "Finance Tracking - Panel de Control de Finanzas Personales",
+    description:
+      "Aplicación web de control de finanzas personales creada para poner Next.js a prueba: cada mutación de datos se ejecuta mediante Server Actions en lugar de API routes, las páginas se renderizan en el servidor y la autenticación se apoya en sesiones JWT almacenadas en cookies httpOnly seguras. El dashboard visualiza ingresos, gastos y tendencias de balance sobre un esquema MySQL gestionado con Drizzle ORM.",
+    link: "https://finance-tracking-visualizator.vercel.app/",
+    github: "https://github.com/DiegoMD4/finance_tracking",
+    image: "assets/464_1x_shots_so.webp",
+    tags: [TAGS.NEXT, TAGS.MYSQL],
+  },
   {
     title: "SDRP - Sistema Dirección de Regulación Programática",
     description:
