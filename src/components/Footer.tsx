@@ -40,6 +40,14 @@ export default function Footer({ onBack }: FooterProps) {
             CV English
           </a>
           <a
+            href="https://linkedin.com/in/diego-montoya1701"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13.5px] text-day-mute dark:text-night-mute hover:text-accent"
+          >
+            LinkedIn
+          </a>
+          <a
             href="https://github.com/DiegoMD4"
             target="_blank"
             rel="noopener noreferrer"
