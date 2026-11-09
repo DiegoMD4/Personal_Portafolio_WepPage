@@ -383,6 +383,53 @@ body {
   animation: pagein 1s ease backwards;
 }
 
+/* Scrollbar estilo NestJS */
+html {
+  --sb-thumb: #c0c0c0;
+  --sb-thumb-hover: #a0a0a0;
+  --sb-track: #e8e8e8;
+}
+
+html.dark {
+  --sb-thumb: #494951;
+  --sb-thumb-hover: #6d6d6d;
+  --sb-track: #1e1a1b;
+}
+
+/* Admin siempre oscuro */
+html.admin-scroll {
+  --sb-thumb: #494951;
+  --sb-thumb-hover: #6d6d6d;
+  --sb-track: #1e1a1b;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: var(--sb-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
+/* Firefox */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sb-thumb) var(--sb-track);
+  }
+}
+
 /* Sidebar móvil */
 @keyframes slidein {
   from {

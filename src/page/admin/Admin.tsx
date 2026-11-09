@@ -664,6 +664,11 @@ export default function Admin() {
 
   useEffect(() => subscribeAuth(setUser), []);
 
+  useEffect(() => {
+    document.documentElement.classList.add("admin-scroll");
+    return () => document.documentElement.classList.remove("admin-scroll");
+  }, []);
+
   if (user === undefined) {
     return (
       <div className="min-h-screen bg-night dark flex items-center justify-center">
