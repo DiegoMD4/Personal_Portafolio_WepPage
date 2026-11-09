@@ -60,17 +60,22 @@ export function Entry({ onEnter }: EntryProps) {
       <span
         className="glow glow-drift -top-52 -left-44 w-[620px] h-[620px]"
         aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.24), transparent 72%)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.32), transparent 72%)" }}
       ></span>
       <span
         className="glow glow-drift-rev -bottom-60 -right-52 w-[680px] h-[680px]"
         aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.09), transparent 72%)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.18), transparent 72%)" }}
       ></span>
       <span
         className="glow glow-drift-slow top-[40%] left-[55%] w-[420px] h-[420px]"
         aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.11), transparent 72%)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.16), transparent 72%)" }}
+      ></span>
+      <span
+        className="glow glow-drift top-[30%] left-[20%] w-[300px] h-[300px]"
+        aria-hidden="true"
+        style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.14), transparent 72%)" }}
       ></span>
 
       <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 sm:px-10 py-6">

@@ -31,16 +31,28 @@ body {
   }
 }
 
-/* Fondo: patrón de grid */
+/* Fondo: patrón de grid animado */
 .bg-grid {
-  background-image: linear-gradient(rgba(190, 49, 68, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(190, 49, 68, 0.055) 1px, transparent 1px);
-  background-size: 44px 44px;
+  background-image: linear-gradient(rgba(190, 49, 68, 0.055) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(190, 49, 68, 0.055) 2px, transparent 2px);
+  background-size: 48px 48px;
+  animation: gridMove 10s linear infinite;
 }
 
 .dark .bg-grid {
-  background-image: linear-gradient(rgba(190, 49, 68, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(190, 49, 68, 0.08) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(190, 49, 68, 0.08) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(190, 49, 68, 0.08) 2px, transparent 2px);
+  background-size: 48px 48px;
+  animation: gridMove 10s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 48px 48px;
+  }
 }
 
 /* Glows decorativos */
@@ -56,7 +68,7 @@ body {
   }
 
   to {
-    transform: translate(46px, 34px);
+    transform: translate(70px, 52px);
   }
 }
 
@@ -91,12 +103,23 @@ body {
   animation: dotblink 1.6s ease-in-out infinite;
 }
 
-/* Nombre con gradiente */
+/* Nombre con gradiente animado */
 .grad-name {
-  background: linear-gradient(100deg, #be3144 10%, #f0808f);
+  background: linear-gradient(100deg, #be3144 10%, #f0808f, #be3144);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
 }
 
 /* ===== Entrada (laptop) ===== */
