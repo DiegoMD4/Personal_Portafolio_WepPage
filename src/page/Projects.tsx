@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageContext";
-import { getProjects } from "../lib/adminStore";
+import { useProjects } from "../hooks/useProjects";
 
 export function Projects() {
   const { language } = useContext(LanguageContext);
   const isSpanish = language === "es-ES";
-  const projects = getProjects();
+  const projects = useProjects();
 
   return (
     <div className="grid md:grid-cols-2 gap-7">

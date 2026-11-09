@@ -1,25 +1,28 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import type { User } from "firebase/auth";
 import { FiLock, FiTrash2, FiUploadCloud, FiEye, FiEdit2, FiPlus, FiLogOut, FiShield } from "react-icons/fi";
 import {
   adminUser,
-  getCv,
-  getCvHref,
-  isAuthed,
-  login,
-  logout,
-  removeCv,
-  setCv,
+  loginAdmin,
+  logoutAdmin,
+  subscribeAuth,
+  getCvDoc,
+  setCvDoc,
+  deleteCvDoc,
+  DEFAULT_CVS,
   type CvLang,
-  getProjects,
-  saveProjects,
-  resetProjects,
-  hasProjectsOverride,
+  type CvFile,
+  fetchProjects,
+  saveProject,
+  deleteProject,
+  seedDefaultProjects,
 } from "../../lib/adminStore";
 import { ALL_TAGS, type Project, type ProjectTag } from "../../data/projects";
 
-const MAX_PDF_SIZE = 5 * 1024 * 1024;
-const MAX_IMG_SIZE = 2 * 1024 * 1024;
+// Límites por documento de Firestore (1 MB); el base64 pesa ~33% más que el archivo.
+const MAX_PDF_SIZE = 700 * 1024;
+const MAX_IMG_SIZE = 600 * 1024;
 
 const inputClasses =
   "box-border w-full bg-night border border-night-line rounded-xl px-4 py-3 text-[14.5px] text-night-text outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/25";
@@ -37,17 +40,22 @@ function readAsDataUrl(file: File): Promise<string> {
   });
 }
 
-function Login({ onOk }: { onOk: () => void }) {
+function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (login(user.trim(), password)) {
-      onOk();
-    } else {
+    setBusy(true);
+    setError(null);
+    try {
+      await loginAdmin(user.trim(), password);
+    } catch {
       setError("Credenciales incorrectas.");
+    } finally {
+      setBusy(false);
     }
   };
 
@@ -104,15 +112,15 @@ function Login({ onOk }: { onOk: () => void }) {
 
         <button
           type="submit"
-          className="flex items-center justify-center gap-2 bg-accent text-white font-semibold text-[15px] px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(190,49,68,.4)]"
+          disabled={busy}
+          className="flex items-center justify-center gap-2 bg-accent text-white font-semibold text-[15px] px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(190,49,68,.4)] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
-          Entrar
+          {busy ? "Verificando…" : "Entrar"}
         </button>
 
         <p className="m-0 flex items-center justify-center gap-2 text-[12.5px] text-night-mute">
           <FiShield />
-          Credenciales validadas contra <span className="font-mono">VITE_ADMIN_USER</span> y{" "}
-          <span className="font-mono">VITE_ADMIN_PASSWORD</span> (.env)
+          Sesión verificada con Firebase Authentication
         </p>
       </form>
 
@@ -124,11 +132,25 @@ function Login({ onOk }: { onOk: () => void }) {
 }
 
 function CvCard({ lang, title, badge }: { lang: CvLang; title: string; badge: string }) {
-  const [tick, setTick] = useState(0);
+  const [cv, setCvState] = useState<CvFile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  void tick;
-  const override = getCv(lang);
-  const current = getCvHref(lang);
+
+  useEffect(() => {
+    let alive = true;
+    getCvDoc(lang)
+      .then((file) => {
+        if (alive) setCvState(file);
+      })
+      .catch(() => alert("No se pudo cargar el CV desde Firestore."))
+      .finally(() => {
+        if (alive) setLoading(false);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [lang]);
 
   const handleFile = async (file: File | undefined) => {
     if (!file) return;
@@ -137,13 +159,28 @@ function CvCard({ lang, title, badge }: { lang: CvLang; title: string; badge: st
       return;
     }
     if (file.size > MAX_PDF_SIZE) {
-      alert("El PDF supera el límite de 5 MB.");
+      alert("El PDF supera el límite de 700 KB (máximo por documento de Firestore).");
       return;
     }
-    const dataUrl = await readAsDataUrl(file);
-    setCv(lang, { name: file.name, size: file.size, date: new Date().toLocaleDateString(), dataUrl });
-    setTick((t) => t + 1);
+    setBusy(true);
+    try {
+      const dataUrl = await readAsDataUrl(file);
+      const next: CvFile = {
+        name: file.name,
+        size: file.size,
+        date: new Date().toLocaleDateString(),
+        dataUrl,
+      };
+      await setCvDoc(lang, next);
+      setCvState(next);
+    } catch {
+      alert("No se pudo subir el CV. Revisa tu conexión y las reglas de Firestore.");
+    } finally {
+      setBusy(false);
+    }
   };
+
+  const current = cv ?? DEFAULT_CVS[lang];
 
   return (
     <div className="flex-[1_1_380px] min-w-0 bg-night-card border border-night-line rounded-[18px] p-7 flex flex-col gap-4">
@@ -156,30 +193,39 @@ function CvCard({ lang, title, badge }: { lang: CvLang; title: string; badge: st
 
       <div className="flex items-center gap-3.5 bg-night border border-night-line2 rounded-xl px-4 py-3.5">
         <div className="min-w-0 flex-1">
-          <p className="m-0 text-[13.5px] font-semibold text-night-text truncate">{current.name}</p>
+          <p className="m-0 text-[13.5px] font-semibold text-night-text truncate">
+            {loading ? "Cargando…" : current.name}
+          </p>
           <p className="m-0 mt-0.5 text-xs text-night-mute">
-            {override ? `${formatSize(override.size)} · subido ${override.date}` : "archivo por defecto del sitio"}
+            {cv ? `${formatSize(cv.size)} · subido ${cv.date} · en Firestore` : "archivo por defecto del sitio"}
           </p>
         </div>
         <div className="flex gap-2">
           <a
-            href={current.href}
-            download={current.download}
+            href={cv ? cv.dataUrl : DEFAULT_CVS[lang].href}
+            download={cv ? cv.name : DEFAULT_CVS[lang].download}
             aria-label={`Descargar ${title}`}
             className="w-[34px] h-[34px] border border-night-line rounded-[9px] flex items-center justify-center text-night-body hover:border-accent-bright hover:text-white"
           >
             <FiEye />
           </a>
-          {override && (
+          {cv && (
             <button
               aria-label={`Eliminar ${title}`}
-              onClick={() => {
-                if (confirm("¿Eliminar el CV subido y volver al archivo por defecto?")) {
-                  removeCv(lang);
-                  setTick((t) => t + 1);
+              disabled={busy}
+              onClick={async () => {
+                if (!confirm("¿Eliminar el CV subido y volver al archivo por defecto?")) return;
+                setBusy(true);
+                try {
+                  await deleteCvDoc(lang);
+                  setCvState(null);
+                } catch {
+                  alert("No se pudo eliminar el CV.");
+                } finally {
+                  setBusy(false);
                 }
               }}
-              className="w-[34px] h-[34px] border border-[#4A3338] bg-accent/10 rounded-[9px] flex items-center justify-center text-accent-bright hover:bg-accent/20"
+              className="w-[34px] h-[34px] border border-[#4A3338] bg-accent/10 rounded-[9px] flex items-center justify-center text-accent-bright hover:bg-accent/20 disabled:opacity-50"
             >
               <FiTrash2 />
             </button>
@@ -189,13 +235,14 @@ function CvCard({ lang, title, badge }: { lang: CvLang; title: string; badge: st
 
       <button
         onClick={() => inputRef.current?.click()}
-        className="border-2 border-dashed border-night-line rounded-xl px-4 py-6 flex flex-col items-center gap-2 text-night-mute transition-colors hover:border-accent hover:bg-accent/5 cursor-pointer"
+        disabled={busy}
+        className="border-2 border-dashed border-night-line rounded-xl px-4 py-6 flex flex-col items-center gap-2 text-night-mute transition-colors hover:border-accent hover:bg-accent/5 cursor-pointer disabled:opacity-50"
       >
         <FiUploadCloud className="text-xl" />
         <span className="text-[13.5px] font-semibold text-night-body">
-          Arrastra el nuevo PDF o haz click para seleccionar
+          {busy ? "Subiendo…" : "Arrastra el nuevo PDF o haz click para seleccionar"}
         </span>
-        <span className="text-xs">Solo PDF · máx. 5 MB · reemplaza al actual</span>
+        <span className="text-xs">Solo PDF · máx. 700 KB · reemplaza al actual</span>
       </button>
       <input
         ref={inputRef}
@@ -223,7 +270,17 @@ const EMPTY_PROJECT = (): Project => ({
   tags: [],
 });
 
-function ProjectForm({ project, onSave, onCancel }: { project: Project; onSave: (p: Project) => void; onCancel: () => void }) {
+function ProjectForm({
+  project,
+  busy,
+  onSave,
+  onCancel,
+}: {
+  project: Project;
+  busy: boolean;
+  onSave: (p: Project) => void;
+  onCancel: () => void;
+}) {
   const [draft, setDraft] = useState<Project>({ ...project });
   const [tab, setTab] = useState<"es" | "en">("es");
   const imgRef = useRef<HTMLInputElement>(null);
@@ -240,7 +297,7 @@ function ProjectForm({ project, onSave, onCancel }: { project: Project; onSave: 
       return;
     }
     if (file.size > MAX_IMG_SIZE) {
-      alert("La imagen supera el límite de 2 MB.");
+      alert("La imagen supera el límite de 600 KB (máximo por documento de Firestore).");
       return;
     }
     set("image", await readAsDataUrl(file));
@@ -351,7 +408,7 @@ function ProjectForm({ project, onSave, onCancel }: { project: Project; onSave: 
             <span className="text-[13px] font-semibold text-night-body">
               {draft.image ? "Reemplazar imagen" : "Subir imagen"}
             </span>
-            <span className="text-[11.5px]">WEBP o PNG · 1200×760 recomendado · máx. 2 MB</span>
+            <span className="text-[11.5px]">WEBP o PNG · máx. 600 KB</span>
           </button>
           <input
             ref={imgRef}
@@ -372,10 +429,10 @@ function ProjectForm({ project, onSave, onCancel }: { project: Project; onSave: 
             </button>
             <button
               onClick={() => onSave(draft)}
-              disabled={!draft.title_es.trim() || !draft.title_en.trim()}
+              disabled={busy || !draft.title_es.trim() || !draft.title_en.trim()}
               className="bg-accent text-white font-semibold text-sm px-6 py-2.5 rounded-[10px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(190,49,68,.4)] disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-none"
             >
-              Guardar cambios
+              {busy ? "Guardando…" : "Guardar cambios"}
             </button>
           </div>
         </div>
@@ -384,25 +441,63 @@ function ProjectForm({ project, onSave, onCancel }: { project: Project; onSave: 
   );
 }
 
-function Dashboard({ onLogout }: { onLogout: () => void }) {
-  const [projects, setProjects] = useState<Project[]>(getProjects());
+function Dashboard() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
   const [editing, setEditing] = useState<Project | null>(null);
 
-  const persist = (next: Project[]) => {
-    setProjects(next);
-    saveProjects(next);
+  const reload = async () => {
+    try {
+      setProjects(await fetchProjects());
+    } catch {
+      alert("No se pudieron cargar los proyectos desde Firestore.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const save = (p: Project) => {
-    const exists = projects.some((x) => x.id === p.id);
-    persist(exists ? projects.map((x) => (x.id === p.id ? p : x)) : [...projects, p]);
-    setEditing(null);
+  useEffect(() => {
+    reload();
+  }, []);
+
+  const save = async (p: Project) => {
+    setBusy(true);
+    try {
+      const index = projects.findIndex((x) => x.id === p.id);
+      await saveProject(p, index >= 0 ? index : projects.length);
+      await reload();
+      setEditing(null);
+    } catch {
+      alert("No se pudo guardar el proyecto. Revisa tu conexión y las reglas de Firestore.");
+    } finally {
+      setBusy(false);
+    }
   };
 
-  const remove = (id: string) => {
-    if (confirm("¿Eliminar este proyecto del portafolio?")) {
-      persist(projects.filter((x) => x.id !== id));
+  const remove = async (id: string) => {
+    if (!confirm("¿Eliminar este proyecto del portafolio?")) return;
+    setBusy(true);
+    try {
+      await deleteProject(id);
+      await reload();
       if (editing?.id === id) setEditing(null);
+    } catch {
+      alert("No se pudo eliminar el proyecto.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const seed = async () => {
+    setBusy(true);
+    try {
+      await seedDefaultProjects();
+      await reload();
+    } catch {
+      alert("No se pudieron importar los proyectos por defecto.");
+    } finally {
+      setBusy(false);
     }
   };
 
@@ -425,10 +520,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
               Ver portafolio
             </Link>
             <button
-              onClick={() => {
-                logout();
-                onLogout();
-              }}
+              onClick={() => logoutAdmin()}
               className="inline-flex items-center gap-2 border border-night-line text-night-body font-semibold text-[13.5px] px-4 py-2 rounded-[10px] hover:border-accent-bright hover:text-white"
             >
               <FiLogOut />
@@ -442,8 +534,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         <section>
           <h1 className="m-0 mb-2 font-display text-3xl font-bold">Currículums</h1>
           <p className="m-0 mb-7 text-[14.5px] text-night-mute max-w-2xl">
-            Rota los CV publicados en el portafolio. El archivo nuevo reemplaza al actual y queda disponible de
-            inmediato en el botón «Descargar CV».
+            Rota los CV publicados en el portafolio. El archivo nuevo se guarda en Firestore y queda disponible de
+            inmediato en el botón «Descargar CV» para todos los visitantes.
           </p>
           <div className="flex flex-wrap gap-6">
             <CvCard lang="es" title="CV en Español" badge="ES" />
@@ -459,74 +551,86 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                 Añade, edita o elimina los proyectos mostrados en el portafolio (contenido en ES y EN).
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              {hasProjectsOverride() && (
-                <button
-                  onClick={() => {
-                    if (confirm("¿Restaurar la lista de proyectos por defecto?")) {
-                      resetProjects();
-                      setProjects(getProjects());
-                      setEditing(null);
-                    }
-                  }}
-                  className="text-[13px] text-night-mute hover:text-accent-bright"
-                >
-                  Restaurar por defecto
-                </button>
-              )}
+            <button
+              onClick={() => setEditing(EMPTY_PROJECT())}
+              className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-[14.5px] px-5 py-3 rounded-[11px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(190,49,68,.4)]"
+            >
+              <FiPlus />
+              Añadir proyecto
+            </button>
+          </div>
+
+          {loading ? (
+            <p className="text-night-mute text-sm mt-5">Cargando proyectos…</p>
+          ) : projects.length === 0 ? (
+            <div className="mt-5 border-2 border-dashed border-night-line rounded-[14px] p-8 flex flex-col items-center gap-3 text-center">
+              <p className="m-0 text-[14.5px] text-night-mute">
+                Aún no hay proyectos en Firestore. El sitio público muestra los proyectos por defecto.
+              </p>
               <button
-                onClick={() => setEditing(EMPTY_PROJECT())}
-                className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-[14.5px] px-5 py-3 rounded-[11px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(190,49,68,.4)]"
+                onClick={seed}
+                disabled={busy}
+                className="border border-night-line text-night-body font-semibold text-sm px-5 py-2.5 rounded-[10px] hover:border-accent-bright hover:text-white disabled:opacity-50"
               >
-                <FiPlus />
-                Añadir proyecto
+                {busy ? "Importando…" : "Importar proyectos por defecto"}
               </button>
             </div>
-          </div>
-
-          <div className="flex flex-col gap-3 mt-5">
-            {projects.map((p) => (
-              <div
-                key={p.id}
-                className="flex flex-wrap items-center gap-4 bg-night-card border border-night-line2 rounded-[14px] px-4 py-3.5 transition-colors hover:border-[#4A3338]"
-              >
-                {p.image ? (
-                  <img
-                    src={p.image}
-                    alt=""
-                    className="w-[86px] h-[54px] object-cover object-top rounded-lg border border-night-line shrink-0"
-                  />
-                ) : (
-                  <div className="w-[86px] h-[54px] rounded-lg border border-night-line bg-night shrink-0"></div>
-                )}
-                <div className="flex-1 min-w-[200px]">
-                  <p className="m-0 text-[15px] font-bold">{p.title_es}</p>
-                  <p className="m-0 mt-0.5 font-mono text-[12.5px] text-night-mute">{p.tags.join(" · ") || "sin tags"}</p>
+          ) : (
+            <div className="flex flex-col gap-3 mt-5">
+              {projects.map((p) => (
+                <div
+                  key={p.id}
+                  className="flex flex-wrap items-center gap-4 bg-night-card border border-night-line2 rounded-[14px] px-4 py-3.5 transition-colors hover:border-[#4A3338]"
+                >
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt=""
+                      className="w-[86px] h-[54px] object-cover object-top rounded-lg border border-night-line shrink-0"
+                    />
+                  ) : (
+                    <div className="w-[86px] h-[54px] rounded-lg border border-night-line bg-night shrink-0"></div>
+                  )}
+                  <div className="flex-1 min-w-[200px]">
+                    <p className="m-0 text-[15px] font-bold">{p.title_es}</p>
+                    <p className="m-0 mt-0.5 font-mono text-[12.5px] text-night-mute">
+                      {p.tags.join(" · ") || "sin tags"}
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center text-xs font-semibold text-[#7FD6A0] border border-[#2E4A38] bg-[#142019] px-3 py-1.5 rounded-full">
+                    ES · EN
+                  </span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setEditing(p)}
+                      className="inline-flex items-center gap-2 border border-night-line text-night-body font-semibold text-[13px] px-3.5 py-2 rounded-[9px] hover:border-accent-bright hover:text-white"
+                    >
+                      <FiEdit2 />
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => remove(p.id)}
+                      disabled={busy}
+                      aria-label={`Eliminar ${p.title_es}`}
+                      className="w-[34px] h-[34px] border border-[#4A3338] bg-accent/10 rounded-[9px] flex items-center justify-center text-accent-bright hover:bg-accent/20 disabled:opacity-50"
+                    >
+                      <FiTrash2 />
+                    </button>
+                  </div>
                 </div>
-                <span className="inline-flex items-center text-xs font-semibold text-[#7FD6A0] border border-[#2E4A38] bg-[#142019] px-3 py-1.5 rounded-full">
-                  ES · EN
-                </span>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => setEditing(p)}
-                    className="inline-flex items-center gap-2 border border-night-line text-night-body font-semibold text-[13px] px-3.5 py-2 rounded-[9px] hover:border-accent-bright hover:text-white"
-                  >
-                    <FiEdit2 />
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => remove(p.id)}
-                    aria-label={`Eliminar ${p.title_es}`}
-                    className="w-[34px] h-[34px] border border-[#4A3338] bg-accent/10 rounded-[9px] flex items-center justify-center text-accent-bright hover:bg-accent/20"
-                  >
-                    <FiTrash2 />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
-          {editing && <ProjectForm project={editing} onSave={save} onCancel={() => setEditing(null)} />}
+          {editing && (
+            <ProjectForm
+              key={editing.id}
+              project={editing}
+              busy={busy}
+              onSave={save}
+              onCancel={() => setEditing(null)}
+            />
+          )}
         </section>
       </main>
     </div>
@@ -534,7 +638,17 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 }
 
 export default function Admin() {
-  const [authed, setAuthed] = useState(isAuthed());
-  if (!authed) return <Login onOk={() => setAuthed(true)} />;
-  return <Dashboard onLogout={() => setAuthed(false)} />;
+  const [user, setUser] = useState<User | null | undefined>(undefined);
+
+  useEffect(() => subscribeAuth(setUser), []);
+
+  if (user === undefined) {
+    return (
+      <div className="min-h-screen bg-night dark flex items-center justify-center">
+        <p className="text-night-mute font-mono text-sm">Cargando…</p>
+      </div>
+    );
+  }
+  if (!user) return <Login />;
+  return <Dashboard />;
 }

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageContext";
-import { getCvHref } from "../lib/adminStore";
+import { DEFAULT_CVS, type CvLang } from "../data/cvs";
 
 type FooterProps = {
   onBack?: () => void;
@@ -9,8 +9,11 @@ type FooterProps = {
 export default function Footer({ onBack }: FooterProps) {
   const { language } = useContext(LanguageContext);
   const isSpanish = language === "es-ES";
-  const cvEs = getCvHref("es");
-  const cvEn = getCvHref("en");
+  const onCv = (lang: CvLang) => async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const { downloadCv } = await import("../lib/adminStore");
+    downloadCv(lang);
+  };
 
   return (
     <footer className="border-t border-day-line/70 dark:border-night-line2">
@@ -21,15 +24,17 @@ export default function Footer({ onBack }: FooterProps) {
         </p>
         <div className="flex flex-wrap items-center gap-5">
           <a
-            href={cvEs.href}
-            download={cvEs.download}
+            href={DEFAULT_CVS.es.href}
+            download={DEFAULT_CVS.es.download}
+            onClick={onCv("es")}
             className="text-[13.5px] text-day-mute dark:text-night-mute hover:text-accent"
           >
             CV Español
           </a>
           <a
-            href={cvEn.href}
-            download={cvEn.download}
+            href={DEFAULT_CVS.en.href}
+            download={DEFAULT_CVS.en.download}
+            onClick={onCv("en")}
             className="text-[13.5px] text-day-mute dark:text-night-mute hover:text-accent"
           >
             CV English

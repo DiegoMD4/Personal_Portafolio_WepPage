@@ -1,134 +1,105 @@
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  writeBatch,
+} from "firebase/firestore";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  type User,
+} from "firebase/auth";
+import { auth, db } from "./firebase";
 import { DEFAULT_PROJECTS, type Project } from "../data/projects";
+import { DEFAULT_CVS, type CvFile, type CvLang } from "../data/cvs";
 
-const PROJECTS_KEY = "portfolio_projects_v1";
-const SESSION_KEY = "portfolio_admin_session";
-const CV_KEYS = { es: "portfolio_cv_es_v1", en: "portfolio_cv_en_v1" } as const;
+export { DEFAULT_CVS };
+export type { CvFile, CvLang };
 
-export type CvLang = keyof typeof CV_KEYS;
+/* ===== Proyectos (colección "projects") ===== */
 
-export interface CvFile {
-  name: string;
-  size: number;
-  date: string;
-  dataUrl: string;
+export async function fetchProjects(): Promise<Project[]> {
+  const snap = await getDocs(query(collection(db, "projects"), orderBy("order")));
+  return snap.docs.map((d) => d.data() as Project);
 }
 
-const DEFAULT_CVS: Record<CvLang, { href: string; download: string; name: string }> = {
-  es: {
-    href: "/assets/CV_Desarrollador_FullStack_Diego_Montoya.pdf",
-    download: "Diego_Montoya_Desarrollador_FullStack",
-    name: "CV_Desarrollador_FullStack_Diego_Montoya.pdf",
-  },
-  en: {
-    href: "/assets/CV_FullStack_Developer_Diego_Montoya.pdf",
-    download: "Diego_Montoya_FullStack_Developer",
-    name: "CV_FullStack_Developer_Diego_Montoya.pdf",
-  },
-};
+export async function saveProject(project: Project, order: number) {
+  await setDoc(doc(db, "projects", project.id), { ...project, order });
+}
 
-export function getProjects(): Project[] {
+export async function deleteProject(id: string) {
+  await deleteDoc(doc(db, "projects", id));
+}
+
+export async function seedDefaultProjects() {
+  const batch = writeBatch(db);
+  DEFAULT_PROJECTS.forEach((p, i) => batch.set(doc(db, "projects", p.id), { ...p, order: i }));
+  await batch.commit();
+}
+
+/* ===== CVs (colección "cvs", docs "es" / "en") ===== */
+
+export async function getCvDoc(lang: CvLang): Promise<CvFile | null> {
+  const snap = await getDoc(doc(db, "cvs", lang));
+  return snap.exists() ? (snap.data() as CvFile) : null;
+}
+
+export async function setCvDoc(lang: CvLang, file: CvFile) {
+  await setDoc(doc(db, "cvs", lang), file);
+}
+
+export async function deleteCvDoc(lang: CvLang) {
+  await deleteDoc(doc(db, "cvs", lang));
+}
+
+function triggerDownload(href: string, download: string) {
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = download;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+export async function downloadCv(lang: CvLang) {
   try {
-    const raw = localStorage.getItem(PROJECTS_KEY);
-    if (raw) return JSON.parse(raw) as Project[];
+    const file = await getCvDoc(lang);
+    if (file) {
+      triggerDownload(file.dataUrl, file.name);
+      return;
+    }
   } catch {
-    /* localStorage no disponible */
+    /* sin conexión o sin permisos: cae al PDF estático */
   }
-  return DEFAULT_PROJECTS;
+  const fallback = DEFAULT_CVS[lang];
+  triggerDownload(fallback.href, fallback.download);
 }
 
-export function saveProjects(projects: Project[]) {
-  try {
-    localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
-  } catch {
-    /* localStorage no disponible */
-  }
-}
-
-export function resetProjects() {
-  try {
-    localStorage.removeItem(PROJECTS_KEY);
-  } catch {
-    /* localStorage no disponible */
-  }
-}
-
-export function hasProjectsOverride(): boolean {
-  try {
-    return localStorage.getItem(PROJECTS_KEY) !== null;
-  } catch {
-    return false;
-  }
-}
-
-export function getCv(lang: CvLang): CvFile | null {
-  try {
-    const raw = localStorage.getItem(CV_KEYS[lang]);
-    if (raw) return JSON.parse(raw) as CvFile;
-  } catch {
-    /* localStorage no disponible */
-  }
-  return null;
-}
-
-export function setCv(lang: CvLang, file: CvFile) {
-  try {
-    localStorage.setItem(CV_KEYS[lang], JSON.stringify(file));
-  } catch {
-    /* localStorage no disponible */
-  }
-}
-
-export function removeCv(lang: CvLang) {
-  try {
-    localStorage.removeItem(CV_KEYS[lang]);
-  } catch {
-    /* localStorage no disponible */
-  }
-}
-
-export function getCvHref(lang: CvLang): { href: string; download: string; name: string } {
-  const override = getCv(lang);
-  if (override) {
-    return { href: override.dataUrl, download: override.name, name: override.name };
-  }
-  return DEFAULT_CVS[lang];
-}
-
-export function getDefaultCvName(lang: CvLang): string {
-  return DEFAULT_CVS[lang].name;
-}
+/* ===== Autenticación (Firebase Auth) ===== */
 
 export function adminUser(): string {
   return import.meta.env.VITE_ADMIN_USER ?? "";
 }
 
-export function login(user: string, password: string): boolean {
+export async function loginAdmin(user: string, password: string): Promise<void> {
   const envUser = import.meta.env.VITE_ADMIN_USER;
-  const envPass = import.meta.env.VITE_ADMIN_PASSWORD;
-  if (!envUser || !envPass) return false;
-  if (user === envUser && password === envPass) {
-    try {
-      sessionStorage.setItem(SESSION_KEY, "1");
-    } catch {
-      /* sessionStorage no disponible */
-    }
-    return true;
+  const email = import.meta.env.VITE_ADMIN_EMAIL;
+  if (!envUser || !email || user !== envUser) {
+    throw new Error("invalid-credentials");
   }
-  return false;
+  await signInWithEmailAndPassword(auth, email, password);
 }
 
-export function logout() {
-  try {
-    sessionStorage.removeItem(SESSION_KEY);
-  } catch {
-    /* sessionStorage no disponible */
-  }
+export function logoutAdmin() {
+  return signOut(auth);
 }
 
-export function isAuthed(): boolean {
-  try {
-    return sessionStorage.getItem(SESSION_KEY) === "1";
-  } catch {
-    return false;
-  }
+export function subscribeAuth(cb: (user: User | null) => void) {
+  return onAuthStateChanged(auth, cb);
 }

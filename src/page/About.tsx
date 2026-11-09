@@ -4,7 +4,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { FiGithub, FiDownload } from "react-icons/fi";
 import text from "../json/presentation.json";
 import { LanguageContext } from "../context/LanguageContext";
-import { getCvHref } from "../lib/adminStore";
+import { DEFAULT_CVS } from "../data/cvs";
 
 const LINKEDIN_URL = "https://linkedin.com/in/diego-montoya1701";
 const GITHUB_URL = "https://github.com/DiegoMD4";
@@ -14,7 +14,8 @@ export function About() {
   const { language } = useContext(LanguageContext);
   const isSpanish = language === "es-ES";
   const presentationText = isSpanish ? text.es : text.en;
-  const cv = getCvHref(isSpanish ? "es" : "en");
+  const cvLang = isSpanish ? ("es" as const) : ("en" as const);
+  const cv = DEFAULT_CVS[cvLang];
 
   const socialClasses =
     "w-[42px] h-[42px] rounded-xl border border-day-line dark:border-night-line bg-white dark:bg-transparent flex items-center justify-center text-day-body dark:text-night-body transition-colors hover:border-accent hover:text-accent dark:hover:text-accent-bright";
@@ -40,6 +41,11 @@ export function About() {
           <a
             href={cv.href}
             download={cv.download}
+            onClick={async (e) => {
+              e.preventDefault();
+              const { downloadCv } = await import("../lib/adminStore");
+              downloadCv(cvLang);
+            }}
             className="inline-flex items-center gap-2.5 bg-accent text-white font-semibold text-[15px] px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(190,49,68,.4)]"
           >
             <FiDownload />
