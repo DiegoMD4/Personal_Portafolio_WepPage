@@ -31,11 +31,11 @@ export function Technologies() {
       {TECHS.map((tech) => (
         <div
           key={tech.name}
-          className="relative overflow-hidden flex items-center gap-3.5 bg-white dark:bg-night-card border border-day-line dark:border-night-line rounded-[14px] px-5 py-4 transition-all hover:-translate-y-1 hover:border-accent2/60"
+          className="relative overflow-hidden flex items-center gap-3.5 bg-white dark:bg-night-card border border-day-line dark:border-night-line rounded-[14px] px-5 py-4 transition-all hover:-translate-y-1 hover:border-accent/60"
         >
           <span
             aria-hidden="true"
-            className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-accent to-accent2"
+            className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-accent to-accent-bright"
           ></span>
           <span className="w-[46px] h-[46px] rounded-[11px] bg-[#F6EFF0] border border-day-line dark:border-transparent flex items-center justify-center shrink-0">
             {tech.icon}

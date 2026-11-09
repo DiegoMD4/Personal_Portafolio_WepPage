@@ -7,7 +7,6 @@ export default {
       colors: {
         accent: '#be3144',
         'accent-bright': '#e0566b',
-        accent2: '#facc15',
         night: {
           DEFAULT: '#0F0B0C',
           card: '#16100F',

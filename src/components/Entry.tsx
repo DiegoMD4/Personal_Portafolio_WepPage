@@ -7,12 +7,41 @@ type EntryProps = {
   onEnter: () => void;
 };
 
+const PROMPT = "diego@portfolio:~$ ";
+
+const chStyle = (chars: number) =>
+  ({ "--w": `${chars}ch`, width: `${chars}ch` }) as React.CSSProperties;
+
 export function Entry({ onEnter }: EntryProps) {
   const { language, changeLanguage } = useContext(LanguageContext);
   const { theme, setLight, setDark } = useContext(ThemeContext);
   const [launched, setLaunched] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const isSpanish = language === "es-ES";
+
+  const t = isSpanish
+    ? {
+        out1: "Diego Montoya — Ing. en Informática · Full Stack Developer",
+        cmd2: "stack --principal",
+        cmd3: "./entrar --portafolio",
+        boot1: "▸ Cargando experiencia ....... ",
+        boot2: "▸ Cargando proyectos ......... ",
+        boot3: "▸ Aplicando tema ............. ",
+        opening: "Abriendo portafolio…",
+        hint: "Haz click o toca la pantalla para entrar",
+        hintAlt: "Click or tap the screen to enter",
+      }
+    : {
+        out1: "Diego Montoya — Computer Engineer · Full Stack Developer",
+        cmd2: "stack --main",
+        cmd3: "./enter --portfolio",
+        boot1: "▸ Loading experience ......... ",
+        boot2: "▸ Loading projects ........... ",
+        boot3: "▸ Applying theme ............. ",
+        opening: "Opening portfolio…",
+        hint: "Click or tap the screen to enter",
+        hintAlt: "Haz click o toca la pantalla para entrar",
+      };
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
@@ -36,7 +65,7 @@ export function Entry({ onEnter }: EntryProps) {
       <span
         className="glow glow-drift-rev -bottom-60 -right-52 w-[680px] h-[680px]"
         aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(250,204,21,.1), transparent 72%)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.09), transparent 72%)" }}
       ></span>
       <span
         className="glow glow-drift-slow top-[40%] left-[55%] w-[420px] h-[420px]"
@@ -87,34 +116,36 @@ export function Entry({ onEnter }: EntryProps) {
           >
             {!launched ? (
               <button
+                key={language}
                 onClick={launch}
                 aria-label={isSpanish ? "Encender y entrar al portafolio" : "Power on and enter the portfolio"}
                 className="absolute inset-0 w-full text-left px-7 py-[22px] text-night-text cursor-pointer transition-transform active:scale-[.985]"
               >
                 <span className="flex gap-[7px] mb-3.5">
                   <span className="w-[11px] h-[11px] rounded-full bg-accent inline-block"></span>
-                  <span className="w-[11px] h-[11px] rounded-full bg-accent2 inline-block"></span>
+                  <span className="w-[11px] h-[11px] rounded-full bg-accent-bright inline-block"></span>
                   <span className="w-[11px] h-[11px] rounded-full bg-[#4A3338] inline-block"></span>
                 </span>
-                <span className="tline t1 block text-night-mute">
+                <span className="tline t1 block text-night-mute" style={chStyle(PROMPT.length + 6)}>
                   <span className="text-accent-bright">diego@portfolio</span>:~$ whoami
                 </span>
-                <span className="t2 block text-night-text font-medium">
-                  Diego Montoya — Ing. en Informática · Full Stack Developer
+                <span className="t2 block text-night-text font-medium">{t.out1}</span>
+                <span className="tline t3 block text-night-mute" style={chStyle(PROMPT.length + t.cmd2.length)}>
+                  <span className="text-accent-bright">diego@portfolio</span>:~$ {t.cmd2}
                 </span>
-                <span className="tline t3 block text-night-mute">
-                  <span className="text-accent-bright">diego@portfolio</span>:~$ stack --principal
-                </span>
-                <span className="t4 block text-accent2">React · TypeScript · Next.js · Node.js · Firebase</span>
+                <span className="t4 block text-accent-bright">React · TypeScript · Next.js · Node.js · Firebase</span>
                 <span className="block">
-                  <span className="tline t5 inline-block align-bottom text-night-mute">
-                    <span className="text-accent-bright">diego@portfolio</span>:~$ ./entrar --portafolio
+                  <span
+                    className="tline t5 inline-block align-bottom text-night-mute"
+                    style={chStyle(PROMPT.length + t.cmd3.length)}
+                  >
+                    <span className="text-accent-bright">diego@portfolio</span>:~$ {t.cmd3}
                   </span>{" "}
                   <span className="cursor-late"></span>
                 </span>
                 <span className="tap-wrap absolute left-1/2 bottom-9 w-[60px] h-[60px] -ml-[30px] block">
                   <span className="tap-ring absolute inset-0 border-2 border-accent rounded-full"></span>
-                  <span className="absolute inset-[19px] rounded-full bg-accent2"></span>
+                  <span className="absolute inset-[19px] rounded-full bg-accent-bright"></span>
                 </span>
               </button>
             ) : (
@@ -122,24 +153,25 @@ export function Entry({ onEnter }: EntryProps) {
                 <span className="wipe" aria-hidden="true"></span>
                 <div className="w-[340px] max-w-[90%] flex flex-col text-[13.5px]">
                   <span className="b0 text-night-mute">
-                    <span className="text-accent-bright">$</span> ./entrar --portafolio
+                    <span className="text-accent-bright">$</span> {t.cmd3}
                   </span>
                   <span className="b1 text-night-body">
-                    ▸ Cargando experiencia ....... <span className="text-accent2 font-semibold">OK</span>
+                    {t.boot1}
+                    <span className="text-accent-bright font-semibold">OK</span>
                   </span>
                   <span className="b2 text-night-body">
-                    ▸ Cargando proyectos ......... <span className="text-accent2 font-semibold">OK</span>
+                    {t.boot2}
+                    <span className="text-accent-bright font-semibold">OK</span>
                   </span>
                   <span className="b3 text-night-body">
-                    ▸ Aplicando tema ............. <span className="text-accent2 font-semibold">OK</span>
+                    {t.boot3}
+                    <span className="text-accent-bright font-semibold">OK</span>
                   </span>
                 </div>
                 <span className="bar-track block w-[340px] max-w-[90%] h-[7px] rounded-full bg-night-line2 overflow-hidden">
                   <span className="bar"></span>
                 </span>
-                <span className="b4 text-night-mute text-[13px]">
-                  {isSpanish ? "Abriendo portafolio…" : "Opening portfolio…"}
-                </span>
+                <span className="b4 text-night-mute text-[13px]">{t.opening}</span>
               </div>
             )}
           </div>
@@ -156,12 +188,8 @@ export function Entry({ onEnter }: EntryProps) {
       </div>
 
       <div className="hint-wrap relative z-10 flex flex-col items-center gap-2 text-center">
-        <p className="hint m-0 text-night-text text-[17px] font-semibold font-display">
-          {isSpanish ? "Haz click o toca la pantalla para entrar" : "Click or tap the screen to enter"}
-        </p>
-        <p className="m-0 text-night-mute text-[13.5px]">
-          {isSpanish ? "Click or tap the screen to enter" : "Haz click o toca la pantalla para entrar"}
-        </p>
+        <p className="hint m-0 text-night-text text-[17px] font-semibold font-display">{t.hint}</p>
+        <p className="m-0 text-night-mute text-[13.5px]">{t.hintAlt}</p>
       </div>
     </div>
   );

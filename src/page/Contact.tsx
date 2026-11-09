@@ -20,7 +20,9 @@ export default function Contact() {
         style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.22), transparent)" }}
       ></span>
 
-      <span className="font-mono text-[15px] text-accent2">04. {isSpanish ? "Contacto" : "Contact"}</span>
+      <span className="font-mono text-[15px] text-accent dark:text-accent-bright">
+        04. {isSpanish ? "Contacto" : "Contact"}
+      </span>
       <h2 className="m-0 font-display text-3xl md:text-[40px] font-bold max-w-2xl text-day-text dark:text-night-text">
         {contactText.text1}
       </h2>

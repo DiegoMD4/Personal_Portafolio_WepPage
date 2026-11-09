@@ -28,7 +28,7 @@ export function Portfolio({ onBack }: PortfolioProps) {
       <span
         className="glow glow-drift-rev top-[460px] -right-56 w-[640px] h-[640px]"
         aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(250,204,21,.08), transparent 72%)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.08), transparent 72%)" }}
       ></span>
       <span
         className="glow glow-drift-slow bottom-64 -left-52 w-[520px] h-[520px]"

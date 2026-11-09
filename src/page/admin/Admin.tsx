@@ -61,7 +61,7 @@ function Login({ onOk }: { onOk: () => void }) {
       <span
         className="glow glow-drift-rev -bottom-60 -right-52 w-[640px] h-[640px]"
         aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(250,204,21,.08), transparent 72%)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.08), transparent 72%)" }}
       ></span>
 
       <form

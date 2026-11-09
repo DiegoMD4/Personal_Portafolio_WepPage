@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { createPortal } from "react-dom";
 import { ThemeContext } from "../context/ThemeContext";
 import { LanguageContext } from "../context/LanguageContext";
 import useScrollEffects from "../hooks/useScroll";
@@ -88,8 +89,9 @@ export function Navbar() {
         </div>
       </nav>
 
-      {menuOpen && (
-        <>
+      {menuOpen &&
+        createPortal(
+          <>
           <button
             className="overlay-in fixed inset-0 z-[60] bg-black/50 cursor-pointer"
             aria-label={language === "es-ES" ? "Cerrar menú" : "Close menu"}
@@ -127,8 +129,9 @@ export function Navbar() {
               <ThemeToggle />
             </div>
           </aside>
-        </>
-      )}
+          </>,
+          document.body
+        )}
     </header>
   );
 }
