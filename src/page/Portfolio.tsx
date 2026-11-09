@@ -19,25 +19,25 @@ export function Portfolio({ onBack }: PortfolioProps) {
   const isSpanish = language === "es-ES";
 
   return (
-    <div className="relative overflow-hidden min-h-screen bg-day dark:bg-night bg-grid font-sans">
-      <span
-        className="glow glow-drift -top-44 -left-40 w-[560px] h-[560px]"
-        aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.19), transparent 72%)" }}
-      ></span>
-      <span
-        className="glow glow-drift-rev top-[460px] -right-56 w-[640px] h-[640px]"
-        aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.08), transparent 72%)" }}
-      ></span>
-      <span
-        className="glow glow-drift-slow bottom-64 -left-52 w-[520px] h-[520px]"
-        aria-hidden="true"
-        style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.12), transparent 72%)" }}
-      ></span>
+    <div className="relative min-h-screen bg-day dark:bg-night bg-grid font-sans">
+      <Navbar />
+      <div className="relative overflow-hidden z-10">
+        <span
+          className="glow glow-drift -top-44 -left-40 w-[560px] h-[560px]"
+          aria-hidden="true"
+          style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.19), transparent 72%)" }}
+        ></span>
+        <span
+          className="glow glow-drift-rev top-[460px] -right-56 w-[640px] h-[640px]"
+          aria-hidden="true"
+          style={{ background: "radial-gradient(closest-side, rgba(224,86,107,.08), transparent 72%)" }}
+        ></span>
+        <span
+          className="glow glow-drift-slow bottom-64 -left-52 w-[520px] h-[520px]"
+          aria-hidden="true"
+          style={{ background: "radial-gradient(closest-side, rgba(190,49,68,.12), transparent 72%)" }}
+        ></span>
 
-      <div className="relative z-10">
-        <Navbar />
         <main className="px-4">
           <Section id="presentation" className="py-16 md:py-24">
             <About />
