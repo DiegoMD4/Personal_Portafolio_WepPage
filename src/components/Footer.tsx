@@ -19,8 +19,8 @@ export default function Footer({ onBack }: FooterProps) {
     <footer className="border-t border-day-line/70 dark:border-night-line2">
       <div className="max-w-5xl mx-auto px-6 py-7 flex flex-wrap items-center justify-between gap-3">
         <p className="m-0 text-[13.5px] text-day-mute dark:text-night-mute">
-          © {new Date().getFullYear()} Diego Montoya.{" "}
-          {isSpanish ? "Hecho con React y mucho café." : "Built with React and lots of coffee."}
+          © {new Date().getFullYear()} Diego Montoya.
+          {/* {isSpanish ? "Hecho con React y mucho café." : "Built with React and lots of coffee."} */}
         </p>
         <div className="flex flex-wrap items-center gap-5">
           <a
