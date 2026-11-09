@@ -1,22 +1,26 @@
 {
     "en": {
-        "title": "Hi, I'm Diego",
+        "greeting": "Hi, I'm",
         "description": [
             "As a",
             "Computer Engineer and Full Stack Developer",
             "based in Honduras, I specialize in building robust, scalable, and user-centric web applications. I combine modern Frontend and Backend technologies to transform complex ideas into efficient software solutions."
         ],
         "available": "Available for work",
-        "email": "Email"
+        "email": "Email",
+        "downloadCv": "Download CV",
+        "viewProjects": "View projects"
     },
     "es": {
-        "title": "Hola, soy Diego",
+        "greeting": "Hola, soy",
         "description": [
             "Como",
             "Ingeniero en Informática y Desarrollador Full Stack",
             "basado en Honduras, me especializo en construir aplicaciones web robustas, escalables y centradas en el usuario. Combino tecnologías modernas de Frontend y Backend para transformar ideas complejas en soluciones de software eficientes."
         ],
         "available": "Disponible para trabajar",
-        "email": "Correo"
+        "email": "Correo",
+        "downloadCv": "Descargar CV",
+        "viewProjects": "Ver proyectos"
     }
 }

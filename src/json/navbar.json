@@ -9,6 +9,10 @@
             "id": "#experience"
         },
         {
+            "text": "Technologies",
+            "id": "#technologies"
+        },
+        {
             "text": "Projects",
             "id": "#projects"
         },
@@ -25,6 +29,10 @@
         {
             "text": "Experiencia",
             "id": "#experience"
+        },
+        {
+            "text": "Tecnologías",
+            "id": "#technologies"
         },
         {
             "text": "Proyectos",
