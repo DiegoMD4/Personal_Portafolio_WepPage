@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { User } from "firebase/auth";
-import { FiLock, FiTrash2, FiUploadCloud, FiEye, FiEdit2, FiPlus, FiLogOut, FiShield } from "react-icons/fi";
+import { FiLock, FiTrash2, FiUploadCloud, FiEye, FiDownload, FiEdit2, FiPlus, FiLogOut, FiShield } from "react-icons/fi";
 import {
   adminUser,
   loginAdmin,
@@ -201,13 +201,24 @@ function CvCard({ lang, title, badge }: { lang: CvLang; title: string; badge: st
           </p>
         </div>
         <div className="flex gap-2">
+          {/* Ver: abre el PDF en una nueva pestaña sin descargar */}
+          <a
+            href={cv ? cv.dataUrl : DEFAULT_CVS[lang].href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Ver ${title}`}
+            className="w-[34px] h-[34px] border border-night-line rounded-[9px] flex items-center justify-center text-night-body hover:border-accent-bright hover:text-white"
+          >
+            <FiEye />
+          </a>
+          {/* Descargar: fuerza la descarga del archivo */}
           <a
             href={cv ? cv.dataUrl : DEFAULT_CVS[lang].href}
             download={cv ? cv.name : DEFAULT_CVS[lang].download}
             aria-label={`Descargar ${title}`}
             className="w-[34px] h-[34px] border border-night-line rounded-[9px] flex items-center justify-center text-night-body hover:border-accent-bright hover:text-white"
           >
-            <FiEye />
+            <FiDownload />
           </a>
           {cv && (
             <button
