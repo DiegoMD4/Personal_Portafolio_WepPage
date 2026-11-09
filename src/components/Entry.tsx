@@ -59,11 +59,11 @@ export function Entry({ onEnter }: EntryProps) {
   };
 
   const laptopBaseStyle = {
-    background: isDark ? "linear-gradient(to-b, from-[#2A1F22], to-night-soft)" : "linear-gradient(to-b, from-[#C9BDBE], to-[#E5D8DA])",
+    background: isDark ? "linear-gradient(180deg, #2A1F22, #1A1315)" : "linear-gradient(180deg, #C9BDBE, #E5D8DA)",
   };
 
   const laptopBottomStyle = {
-    background: isDark ? "linear-gradient(to-b, from-[#2E2225], to-[#191315])" : "linear-gradient(to-b, from-[#B8A9AB], to-[#D1C6C7])",
+    background: isDark ? "linear-gradient(180deg, #2E2225, #191315)" : "linear-gradient(180deg, #D1C6C7, #EDE7E8)",
     boxShadow: isDark ? "0 24px 50px rgba(0,0,0,.65)" : "0 24px 50px rgba(0,0,0,.35)",
   };
 
@@ -134,7 +134,7 @@ export function Entry({ onEnter }: EntryProps) {
         >
           <div className={`absolute top-1.5 left-1/2 -ml-[3px] w-1.5 h-1.5 rounded-full border ${isDark ? "bg-night border-[#3C2D31]" : "bg-[#D9CCCE] border-[#9A8C8E]"}`}></div>
           <div
-            className={`laptop-display box-border rounded-[9px] relative overflow-hidden font-mono text-[14.5px] leading-[2] ${isDark ? "bg-[#0A0607] border border-night-line text-night-text" : "bg-[#FFFFFF] border border-[#9A8C8E] text-day-text shadow-[0_8px_24px_rgba(0,0,0,.12)]"}`}
+            className={`laptop-display box-border rounded-[9px] relative overflow-hidden font-mono text-[clamp(8px,2.05vw,14.5px)] leading-[2] ${isDark ? "bg-[#0A0607] border border-night-line text-night-text" : "bg-[#FFFFFF] border border-[#9A8C8E] text-day-text shadow-[0_8px_24px_rgba(0,0,0,.12)]"}`}
             style={{ aspectRatio: "16 / 9.6" }}
           >
             {!launched ? (
@@ -142,18 +142,18 @@ export function Entry({ onEnter }: EntryProps) {
                 key={language}
                 onClick={launch}
                 aria-label={isSpanish ? "Encender y entrar al portafolio" : "Power on and enter the portfolio"}
-                className={`absolute inset-0 w-full text-left px-7 py-[22px] cursor-pointer transition-transform active:scale-[.985] ${isDark ? "text-night-text" : "text-day-text"}`}
+                className={`absolute inset-0 w-full text-left px-4 py-3 sm:px-7 sm:py-[22px] cursor-pointer transition-transform active:scale-[.985] ${isDark ? "text-night-text" : "text-day-text"}`}
               >
                 <span className="flex gap-[7px] mb-3.5">
                   <span className="w-[11px] h-[11px] rounded-full bg-accent inline-block"></span>
                   <span className="w-[11px] h-[11px] rounded-full bg-accent-bright inline-block"></span>
-                  <span className="w-[11px] h-[11px] rounded-full bg-[#4A3338] inline-block"></span>
+                  <span className={`w-[11px] h-[11px] rounded-full inline-block ${isDark ? "bg-[#4A3338]" : "bg-[#C9BDBE]"}`}></span>
                 </span>
-                <span className={`tline t1 block mb-3.5 ${isDark ? "text-night-mute" : "text-day-mute"}`} style={chStyle(PROMPT.length + 6)}>
+                <span className={`tline t1 block ${isDark ? "text-night-mute" : "text-day-mute"}`} style={chStyle(PROMPT.length + 6)}>
                   <span className="text-accent-bright">diego@portfolio</span>:~$ whoami
                 </span>
                 <span className={`t2 block font-medium ${isDark ? "text-night-text" : "text-day-text"}`}>{t.out1}</span>
-                <span className={`tline t3 block mb-3.5 ${isDark ? "text-night-mute" : "text-day-mute"}`} style={chStyle(PROMPT.length + t.cmd2.length)}>
+                <span className={`tline t3 block ${isDark ? "text-night-mute" : "text-day-mute"}`} style={chStyle(PROMPT.length + t.cmd2.length)}>
                   <span className="text-accent-bright">diego@portfolio</span>:~$ {t.cmd2}
                 </span>
                 <span className="t4 block text-accent-bright">React · TypeScript · Next.js · Node.js · Firebase</span>
@@ -174,7 +174,7 @@ export function Entry({ onEnter }: EntryProps) {
             ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 p-6">
                 <span className="wipe" aria-hidden="true"></span>
-                <div className="w-[340px] max-w-[90%] flex flex-col text-[13.5px]">
+                <div className="w-[340px] max-w-[90%] flex flex-col text-[0.93em]">
                   <span className={`b0 ${isDark ? "text-night-mute" : "text-day-mute"}`}>
                     <span className="text-accent-bright">$</span> {t.cmd3}
                   </span>
@@ -194,7 +194,7 @@ export function Entry({ onEnter }: EntryProps) {
                 <span className={`bar-track block w-[340px] max-w-[90%] h-[7px] rounded-full overflow-hidden ${isDark ? "bg-night-line2" : "bg-[#D8CBCC]"}`}>
                   <span className="bar"></span>
                 </span>
-                <span className={`b4 ${isDark ? "text-night-mute text-[13px]" : "text-day-mute text-[13px]"}`}>{t.opening}</span>
+                <span className={`b4 text-[0.9em] ${isDark ? "text-night-mute" : "text-day-mute"}`}>{t.opening}</span>
               </div>
             )}
           </div>
@@ -204,7 +204,7 @@ export function Entry({ onEnter }: EntryProps) {
           style={laptopBaseStyle}
         ></div>
         <div
-          className={`w-[790px] max-w-[97vw] h-[22px] box-border rounded-b-[18px] rounded-t-[3px] relative ${isDark ? "border border-[#392B2F] bg-gradient-to-b from-[#2E2225] to-[#191315]" : "border border-[#C9BDBE] bg-gradient-to-b from-[#D1C6C7] to-[#EDE7E8]"}`}
+          className={`w-[790px] max-w-[97vw] h-[22px] box-border rounded-b-[18px] rounded-t-[3px] relative border ${isDark ? "border-[#392B2F]" : "border-[#C9BDBE]"}`}
           style={laptopBottomStyle}
         >
           <span className={`absolute top-0 left-1/2 w-[130px] -ml-[65px] h-2 rounded-b-[9px] ${isDark ? "bg-[#120D0E]" : "bg-[#9A8C8E]"}`}></span>

@@ -31,6 +31,15 @@ function formatSize(bytes: number) {
   return bytes > 1024 * 1024 ? `${(bytes / 1024 / 1024).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
 }
 
+function dataUrlToBlobUrl(dataUrl: string): string {
+  const [meta, b64] = dataUrl.split(",");
+  const mime = meta.match(/data:(.*?)[;,]/)?.[1] || "application/pdf";
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return URL.createObjectURL(new Blob([bytes], { type: mime }));
+}
+
 function readAsDataUrl(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -201,18 +210,20 @@ function CvCard({ lang, title, badge }: { lang: CvLang; title: string; badge: st
           </p>
         </div>
         <div className="flex gap-2">
-          {/* Ver: abre el PDF en una nueva pestaña sin descargar */}
-          <a
-            href={cv ? cv.dataUrl : DEFAULT_CVS[lang].href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Ver ${title}`}
+          <button
+            aria-label={`Vista previa de ${title}`}
+            title="Vista previa"
+            onClick={() => {
+              // Chrome bloquea abrir data: URLs en una pestaña; se convierte a blob URL
+              const url = cv ? dataUrlToBlobUrl(cv.dataUrl) : DEFAULT_CVS[lang].href;
+              window.open(url, "_blank", "noopener");
+            }}
             className="w-[34px] h-[34px] border border-night-line rounded-[9px] flex items-center justify-center text-night-body hover:border-accent-bright hover:text-white"
           >
             <FiEye />
-          </a>
-          {/* Descargar: fuerza la descarga del archivo */}
+          </button>
           <a
+            title="Descargar"
             href={cv ? cv.dataUrl : DEFAULT_CVS[lang].href}
             download={cv ? cv.name : DEFAULT_CVS[lang].download}
             aria-label={`Descargar ${title}`}
