@@ -60,28 +60,64 @@ body {
   position: absolute;
   border-radius: 9999px;
   pointer-events: none;
+  will-change: transform;
 }
 
-@keyframes drift {
-  from {
-    transform: translate(0, 0);
+/* Cada variante recorre la pantalla con una trayectoria distinta.
+   Se usan vw/vh para que el recorrido escale con el viewport, y el
+   keyframe cierra en el mismo punto que abre para que el bucle no salte. */
+@keyframes driftA {
+  0%,
+  100% {
+    transform: translate3d(-6vw, 0, 0) scale(1);
   }
 
-  to {
-    transform: translate(70px, 52px);
+  33% {
+    transform: translate3d(22vw, -10vh, 0) scale(1.1);
+  }
+
+  66% {
+    transform: translate3d(36vw, 9vh, 0) scale(0.92);
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    transform: translate3d(0, -8vh, 0) scale(1);
+  }
+
+  40% {
+    transform: translate3d(-18vw, 14vh, 0) scale(1.14);
+  }
+
+  70% {
+    transform: translate3d(14vw, 28vh, 0) scale(0.9);
+  }
+}
+
+@keyframes driftC {
+  0%,
+  100% {
+    transform: translate3d(-10vw, 12vh, 0) scale(1.02);
+  }
+
+  50% {
+    transform: translate3d(30vw, -16vh, 0) scale(0.94);
   }
 }
 
 .glow-drift {
-  animation: drift 16s ease-in-out infinite alternate;
+  animation: driftA 26s ease-in-out infinite;
 }
 
 .glow-drift-rev {
-  animation: drift 20s ease-in-out infinite alternate-reverse;
+  animation: driftB 34s ease-in-out infinite;
 }
 
 .glow-drift-slow {
-  animation: drift 22s ease-in-out infinite alternate;
+  animation: driftC 46s ease-in-out infinite;
+  animation-delay: -12s;
 }
 
 /* Punto "disponible" */
