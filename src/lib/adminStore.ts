@@ -4,8 +4,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  orderBy,
-  query,
   setDoc,
   writeBatch,
 } from "firebase/firestore";
@@ -25,12 +23,21 @@ export type { CvFile, CvLang };
 /* ===== Proyectos (colección "projects") ===== */
 
 export async function fetchProjects(): Promise<Project[]> {
-  const snap = await getDocs(query(collection(db, "projects"), orderBy("order")));
-  return snap.docs.map((d) => d.data() as Project);
+  const snap = await getDocs(collection(db, "projects"));
+  return snap.docs
+    .map((d) => d.data() as Project)
+    .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER));
 }
 
 export async function saveProject(project: Project, order: number) {
   await setDoc(doc(db, "projects", project.id), { ...project, order });
+}
+
+/** Reescribe el campo `order` de todos los proyectos según el arreglo recibido. */
+export async function reorderProjects(ids: string[]) {
+  const batch = writeBatch(db);
+  ids.forEach((id, i) => batch.update(doc(db, "projects", id), { order: i }));
+  await batch.commit();
 }
 
 export async function deleteProject(id: string) {

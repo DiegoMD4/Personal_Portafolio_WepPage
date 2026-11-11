@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { User } from "firebase/auth";
-import { FiLock, FiTrash2, FiUploadCloud, FiEye, FiDownload, FiEdit2, FiPlus, FiLogOut, FiShield } from "react-icons/fi";
+import { FiLock, FiTrash2, FiUploadCloud, FiEye, FiDownload, FiEdit2, FiPlus, FiLogOut, FiShield, FiMenu, FiChevronUp, FiChevronDown } from "react-icons/fi";
 import {
   adminUser,
   loginAdmin,
@@ -16,6 +16,7 @@ import {
   fetchProjects,
   saveProject,
   deleteProject,
+  reorderProjects,
   seedDefaultProjects,
 } from "../../lib/adminStore";
 import { ALL_TAGS, type Project, type ProjectTag } from "../../data/projects";
@@ -467,6 +468,9 @@ function Dashboard() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [ordering, setOrdering] = useState(false);
+  const [dragId, setDragId] = useState<string | null>(null);
+  const [dragOverId, setDragOverId] = useState<string | null>(null);
   const [editing, setEditing] = useState<Project | null>(null);
 
   const reload = async () => {
@@ -523,6 +527,41 @@ function Dashboard() {
     }
   };
 
+  // Aplica el nuevo orden de inmediato (optimista) y lo persiste en Firestore.
+  const persistOrder = async (next: Project[]) => {
+    setProjects(next);
+    setOrdering(true);
+    try {
+      await reorderProjects(next.map((p) => p.id));
+    } catch {
+      alert("No se pudo guardar el nuevo orden. Se restaura el anterior.");
+      await reload();
+    } finally {
+      setOrdering(false);
+    }
+  };
+
+  const moveProject = (id: string, direction: -1 | 1) => {
+    const from = projects.findIndex((p) => p.id === id);
+    const to = from + direction;
+    if (from < 0 || to < 0 || to >= projects.length) return;
+    const next = [...projects];
+    [next[from], next[to]] = [next[to], next[from]];
+    persistOrder(next);
+  };
+
+  const dropOn = (targetId: string) => {
+    const from = dragId ? projects.findIndex((p) => p.id === dragId) : -1;
+    const to = projects.findIndex((p) => p.id === targetId);
+    setDragId(null);
+    setDragOverId(null);
+    if (from < 0 || to < 0 || from === to) return;
+    const next = [...projects];
+    const [moved] = next.splice(from, 1);
+    next.splice(to, 0, moved);
+    persistOrder(next);
+  };
+
   return (
     <div className="min-h-screen bg-night bg-grid dark font-sans text-night-text">
       <header className="border-b border-night-line2 bg-[#130D0E]/90 backdrop-blur-xl sticky top-0 z-20">
@@ -570,16 +609,20 @@ function Dashboard() {
             <div>
               <h1 className="m-0 mb-2 font-display text-3xl font-bold">Proyectos</h1>
               <p className="m-0 text-[14.5px] text-night-mute">
-                Añade, edita o elimina los proyectos mostrados en el portafolio (contenido en ES y EN).
+                Añade, edita o elimina los proyectos mostrados en el portafolio (contenido en ES y EN). Arrastra el
+                asa <FiMenu className="inline align-middle" /> o usa las flechas para cambiar el orden en que se ven.
               </p>
             </div>
-            <button
-              onClick={() => setEditing(EMPTY_PROJECT())}
-              className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-[14.5px] px-5 py-3 rounded-[11px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(190,49,68,.4)]"
-            >
-              <FiPlus />
-              Añadir proyecto
-            </button>
+            <div className="flex items-center gap-3">
+              {ordering && <span className="font-mono text-xs text-night-mute">Guardando orden…</span>}
+              <button
+                onClick={() => setEditing(EMPTY_PROJECT())}
+                className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-[14.5px] px-5 py-3 rounded-[11px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(190,49,68,.4)]"
+              >
+                <FiPlus />
+                Añadir proyecto
+              </button>
+            </div>
           </div>
 
           {loading ? (
@@ -599,11 +642,45 @@ function Dashboard() {
             </div>
           ) : (
             <div className="flex flex-col gap-3 mt-5">
-              {projects.map((p) => (
+              {projects.map((p, index) => (
                 <div
                   key={p.id}
-                  className="flex flex-wrap items-center gap-4 bg-night-card border border-night-line2 rounded-[14px] px-4 py-3.5 transition-colors hover:border-[#4A3338]"
+                  onDragOver={(e) => {
+                    if (!dragId || dragId === p.id) return;
+                    e.preventDefault();
+                    if (dragOverId !== p.id) setDragOverId(p.id);
+                  }}
+                  onDragLeave={() => setDragOverId((cur) => (cur === p.id ? null : cur))}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    dropOn(p.id);
+                  }}
+                  className={`flex flex-wrap items-center gap-4 bg-night-card border rounded-[14px] px-4 py-3.5 transition-colors ${
+                    dragOverId === p.id && dragId !== p.id
+                      ? "border-accent bg-accent/5"
+                      : "border-night-line2 hover:border-[#4A3338]"
+                  } ${dragId === p.id ? "opacity-40" : ""}`}
                 >
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span
+                      draggable={!ordering}
+                      onDragStart={(e) => {
+                        e.dataTransfer.effectAllowed = "move";
+                        e.dataTransfer.setData("text/plain", p.id);
+                        setDragId(p.id);
+                      }}
+                      onDragEnd={() => {
+                        setDragId(null);
+                        setDragOverId(null);
+                      }}
+                      title="Arrastra para reordenar"
+                      aria-label={`Arrastrar ${p.title_es} para reordenar`}
+                      className="w-[26px] h-[34px] flex items-center justify-center text-night-mute cursor-grab active:cursor-grabbing hover:text-accent-bright"
+                    >
+                      <FiMenu />
+                    </span>
+                    <span className="w-4 text-right font-mono text-[11.5px] text-night-mute">{index + 1}</span>
+                  </div>
                   {p.image ? (
                     <img
                       src={p.image}
@@ -622,6 +699,26 @@ function Dashboard() {
                   <span className="inline-flex items-center text-xs font-semibold text-[#7FD6A0] border border-[#2E4A38] bg-[#142019] px-3 py-1.5 rounded-full">
                     ES · EN
                   </span>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => moveProject(p.id, -1)}
+                      disabled={ordering || busy || index === 0}
+                      aria-label={`Subir ${p.title_es}`}
+                      title="Subir"
+                      className="w-[30px] h-[34px] border border-night-line rounded-[9px] flex items-center justify-center text-night-body hover:border-accent-bright hover:text-white disabled:opacity-30 disabled:hover:border-night-line disabled:hover:text-night-body"
+                    >
+                      <FiChevronUp />
+                    </button>
+                    <button
+                      onClick={() => moveProject(p.id, 1)}
+                      disabled={ordering || busy || index === projects.length - 1}
+                      aria-label={`Bajar ${p.title_es}`}
+                      title="Bajar"
+                      className="w-[30px] h-[34px] border border-night-line rounded-[9px] flex items-center justify-center text-night-body hover:border-accent-bright hover:text-white disabled:opacity-30 disabled:hover:border-night-line disabled:hover:text-night-body"
+                    >
+                      <FiChevronDown />
+                    </button>
+                  </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => setEditing(p)}

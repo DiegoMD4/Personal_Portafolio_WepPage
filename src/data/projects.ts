@@ -1,14 +1,22 @@
 export type ProjectTag =
+  | "TypeScript"
+  | "React"
   | "Next.js"
   | "Tailwind CSS"
   | "Node.js"
+  | "PHP"
+  | "Laravel"
   | "SQL Server"
   | "MySQL";
 
 export const ALL_TAGS: ProjectTag[] = [
+  "TypeScript",
+  "React",
   "Next.js",
   "Tailwind CSS",
   "Node.js",
+  "PHP",
+  "Laravel",
   "SQL Server",
   "MySQL",
 ];
@@ -23,6 +31,8 @@ export interface Project {
   github?: string;
   image: string;
   tags: ProjectTag[];
+  /** Posición en el portafolio; lo gestiona el panel de administración. */
+  order?: number;
 }
 
 export const DEFAULT_PROJECTS: Project[] = [
