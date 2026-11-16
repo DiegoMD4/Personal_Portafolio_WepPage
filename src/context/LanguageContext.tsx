@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
+export type Language = "es-ES" | "en-US";
+
 interface LanguageContext {
-  language: "es-ES" | "en-US";
+  language: Language;
   changeLanguage: () => void;
 }
 
